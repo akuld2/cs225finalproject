@@ -14,10 +14,19 @@
 
 using namespace std;
 
+Graph createGraph1() {
+    // create 5 nodes
+    // create edges and attach the edges to the nodes (via maps in the node class)
+    // put the 5 nodes into a vector
+    // initialize graph based on vector
+    // return graph
+}
+
 // Basic test cases
 TEST_CASE("initializeGraph1", "[weight=1][part=1]") {
-    // initialize and validate creating the graph with 10 test values
-    REQUIRE(true);
+    // initialize and validate creating the graph with 5 test values
+    Graph graph = createGraph1();
+    REQUIRE(!graph.empty());
 }
 TEST_CASE("initializeGraph2", "[weight=1][part=1]") {
     // initialize and validate creating the graph with 20 different test values

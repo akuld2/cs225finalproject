@@ -5,10 +5,10 @@
 #include <iostream>
 
 int main() {
-    std::string start_x;
-    std::string start_y;
-    std::string end_x;
-    std::string end_y;
+    int start_x;
+    int start_y;
+    int end_x;
+    int end_y;
 
     std::cout << "Enter the x coordinate for your starting point: ";
     std::cin > start_x;
@@ -21,7 +21,5 @@ int main() {
     std::cout << std::endl;
     std::cout << "Enter the y coordinate for your destination: ";
     std::cin > end_y;
-
-    
 
 }

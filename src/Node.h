@@ -8,6 +8,8 @@ class Node {
     public:
         std::map<Node*, Edge*> getNeighbors();
     private:
-        std::string startingLocation_;
+        std::string startingLocation;
+        int startingX;
+        int startingY;
         std::map<Node*, Edge*> neighbors_;
 };
