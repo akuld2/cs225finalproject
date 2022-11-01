@@ -23,6 +23,13 @@ Node Node::retrieveNeighbor(Node endLocation)
     return Node();
 };
 
+Edge Node::retrieveNeighborEdge(Node endLocation) {
+    if (endLocation == Node()) {
+        return Edge();
+    }
+    return neighbors_[endLocation];
+};
+
 bool Node::operator==(Node zone)
 {
     return startingLocation_ == zone.getZone();

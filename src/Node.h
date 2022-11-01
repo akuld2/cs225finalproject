@@ -26,6 +26,12 @@ public:
     Node retrieveNeighbor(Node endLocation);
 
     /**
+     * retrieveNeighborEdge() will retrieve the edge between the two nodes
+     * @return the edge between or an empty edge if it doesn't exist
+     */
+    Edge retrieveNeighborEdge(Node endLocation);
+
+    /**
      * operator== deems two nodes equal if they have the same zone starting location_
      * @param zone which is the Node
     */
