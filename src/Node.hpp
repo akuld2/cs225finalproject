@@ -10,10 +10,20 @@ std::string Node::getZone()
     return startingLocation_;
 };
 
-Node *Node::retrieveNeighbor() {
+Node Node::retrieveNeighbor(Node endLocation)
+{
+    for (auto const &neighbor : neighbors_)
+    {
+        if (neighbor.first.startingLocation_ == endLocation.getZone())
+        {
+            return neighbor.first;
+        }
+    }
 
+    return Node();
 };
 
-bool Node::operator==(Node* zone) {
-    return startingLocation_ == zone->getZone();
+bool Node::operator==(Node zone)
+{
+    return startingLocation_ == zone.getZone();
 };

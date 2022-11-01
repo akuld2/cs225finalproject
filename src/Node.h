@@ -21,11 +21,15 @@ public:
 
     /**
      * retrieveNeighbor() will retrieve the key of the end location
-     * @return the node of the end location or NULL if that endLocation does not exist
+     * @return the node of the end location or empty Node if that endLocation does not exist
      */
-    Node *retrieveNeighbor();
+    Node retrieveNeighbor(Node endLocation);
 
-    bool operator==(Node* zone);
+    /**
+     * operator== deems two nodes equal if they have the same zone starting location_
+     * @param zone which is the Node
+    */
+    bool operator==(Node zone);
 
 private:
     std::string startingLocation_;
