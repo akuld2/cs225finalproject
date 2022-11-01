@@ -5,7 +5,8 @@
 
 class Graph {
     public:
-        std::vector<Node>* getNodes();
+        Graph(std::vector<Node*>);
+        std::vector<Node*> getNodes();
     private:  
-        std::vector<Node> nodes_;
+        std::vector<Node*> nodes_;
 };
