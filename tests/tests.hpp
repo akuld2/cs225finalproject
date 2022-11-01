@@ -15,18 +15,37 @@
 using namespace std;
 
 Graph createGraph1() {
-    // create 5 nodes
-    // create edges and attach the edges to the nodes (via maps in the node class)
-    // put the 5 nodes into a vector
-    // initialize graph based on vector
-    // return graph
+    // Below created 5 nodes and edges are not defined fully (eveything is in default vars) 
+    // (do we need setters for the fairs, miles, and times ??)
+    Node node1;
+    Node node2;
+    Node node3;
+    Node node4;
+    Node node5;
+    Edge edge1;
+    Edge edge2;
+    Edge edge3;
+    Edge edge4;
+    Edge edge5;
+    node1.setNeighbors(&edge1);
+    node2.setNeighbors(&edge2);
+    node3.setNeighbors(&edge3);
+    node4.setNeighbors(&edge4);
+    node5.setNeighbors(&edge5);
+    std::vector<Node*> vect;
+    vect.push_back(&node1);
+    vect.push_back(&node2);
+    vect.push_back(&node3);
+    vect.push_back(&node4);
+    vect.push_back(&node5);
+    return Graph(vect);
 }
 
 // Basic test cases
 TEST_CASE("initializeGraph1", "[weight=1][part=1]") {
     // initialize and validate creating the graph with 5 test values
     Graph graph = createGraph1();
-    REQUIRE(!graph.empty());
+    REQUIRE(!graph.getNodes().empty());
 }
 TEST_CASE("initializeGraph2", "[weight=1][part=1]") {
     // initialize and validate creating the graph with 20 different test values

@@ -7,6 +7,7 @@
 class Node {
     public:
         std::map<Node*, Edge*> getNeighbors();
+        void setNeighbors(Edge* edge);
     private:
         std::string startingLocation;
         int startingX;
