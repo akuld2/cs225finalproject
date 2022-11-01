@@ -13,10 +13,10 @@ int main() {
     std::cout << "Enter the x coordinate for your starting point: ";
     std::cin > start_x;
     std::cout << std::endl;
-    std::cout << "Enter the y coordinate for your destination: ";
+    std::cout << "Enter the y coordinate for your starting point: ";
     std::cin > start_y;
     std::cout << std::endl;
-    std::cout << "Enter the x coordinate for your starting point: ";
+    std::cout << "Enter the x coordinate for your destination: ";
     std::cin > end_x;
     std::cout << std::endl;
     std::cout << "Enter the y coordinate for your destination: ";
