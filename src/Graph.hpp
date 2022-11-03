@@ -11,4 +11,5 @@ Node* Graph::getNode(std::string zone) {
         }
     }
     return NULL;
+
 }
