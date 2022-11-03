@@ -1,9 +1,15 @@
 #include "Graph.h"
 
-std::vector<Node*> Graph::getNodes() {
-    return nodes_;
+std::vector<Node>* Graph::getNodes() {
+    return &nodes_;
 }
 
-Graph::Graph(std::vector<Node*> nodes) {
-    nodes_ = nodes;
+Node* Graph::getNode(std::string zone) {
+    for (unsigned i = 0; i < nodes_.size(); ++i) {
+        if (nodes_.at(i).getZone() == zone) {
+            return &nodes_.at(i);
+        }
+    }
+    return NULL;
+
 }
