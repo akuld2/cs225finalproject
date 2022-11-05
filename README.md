@@ -18,7 +18,7 @@ If time permits, we would also like to answer these questions…
 If we answer all the questions listed above, a user can find ways to travel between two communities or all communities when using fare, time, or miles as the variable to compare.
 
 ## Data
-We are using the data from the [[Chicago Data Portal of Transportation]  (https://data.cityofchicago.org/Transportation/Taxi-Trips/wrvz-psew/data)].  We will be focusing on the following columns
+We are using the data from the [Chicago Data Portal of Transportation](https://data.cityofchicago.org/Transportation/Taxi-Trips/wrvz-psew/data).  We will be focusing on the following columns
 - Pickup Community Area
 - Dropoff Community Area
 - Trip Seconds
