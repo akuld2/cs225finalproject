@@ -60,9 +60,11 @@ std::vector<Graph::TaxiTripDetails> Graph::read_csv(std::string filename)
             colIndex++;
         }
     }
+    int lines = 0;
     // Read data, line by line
-    while (std::getline(myFile, line))
+    while (std::getline(myFile, line) && lines < 10000)
     {
+        lines++;
         std::stringstream ss(line);
         std::string data;
         std::vector<std::string> taxiData;
