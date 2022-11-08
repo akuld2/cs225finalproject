@@ -25,14 +25,14 @@ public:
          * @param miles is the miles traveled for the trip
          * @param fare is the fare for the trip
          * @param pickup is the pickup location
-         * @param dropoff is the dropoff location 
+         * @param dropoff is the dropoff location
          */
         TaxiTripDetails(double second, double miles, double fare, std::string pickup, std::string dropoff) : tripSecond(second), tripMiles(miles), tripFare(fare), pickupLocation(pickup), dropoffLocation(dropoff) {}
     };
 
 public:
-        std::vector<TaxiTripDetails> read_csv(std::string filename);
-
+    Graph(std::string filename);
+    
     /**
      * getNodes() will return an entire list of nodes.
      * @return a pointer to a vector of nodes.
@@ -47,5 +47,7 @@ public:
     Node *getNode(std::string zone);
 
 private:
+    void buildGraph(std::string filename);
+    std::vector<TaxiTripDetails> readCSV(std::string filename);
     std::vector<Node> nodes_;
 };

@@ -1,5 +1,14 @@
 #include "Node.h"
 
+Node::Node(std::string startLocation) {
+    startingLocation_ = startingLocation;
+}
+
+
+void Node::addEdge(Node endLocation, Edge& newEdge) {
+    neighbors_[endLocation] = newEdge;
+}
+
 std::map<Node, Edge> *Node::getNeighbors()
 {
     return &neighbors_;
@@ -23,11 +32,11 @@ Node Node::retrieveNeighbor(Node endLocation)
     return Node();
 };
 
-Edge Node::retrieveNeighborEdge(Node endLocation) {
+Edge* Node::retrieveNeighborEdge(Node endLocation) {
     if (endLocation == Node()) {
         return Edge();
     }
-    return neighbors_[endLocation];
+    return &neighbors_.at(endLocation);
 };
 
 bool Node::operator==(Node zone)

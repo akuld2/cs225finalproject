@@ -6,24 +6,83 @@
 #include <stdexcept> // std::runtime_error
 #include <sstream>   // std::stringstream
 
-std::vector<Node> *Graph::getNodes()
+Graph::Graph(std::string filename)
 {
-    return &nodes_;
+    buildGraph(filename);
 }
 
-Node *Graph::getNode(std::string zone)
+void Graph::buildGraph(std::string filename)
 {
-    for (unsigned i = 0; i < nodes_.size(); ++i)
+    std::vector<Graph::TaxiTripDetails> result = readCSV(filename);
+    for (auto taxi : result)
     {
-        if (nodes_.at(i).getZone() == zone)
+        Node taxiInfoBegin(taxi.pickupLocation);
+        Node taxiInfoDropOff(taxi.pickupLocation);
+        std::vector<Node>::iterator iterPickup = std::find(nodes_.begin(), nodes_.end(), taxiInfoBegin);
+        std::vector<Node>::iterator iterDropoff = std::find(nodes_.begin(), nodes_.end(), taxiInfoDropOff);
+        if (iterDropoff != nodes_.end())
         {
-            return &nodes_.at(i);
+            if (iterPickup != nodes_.end())
+            {
+
+                try
+                {
+                    Edge *edge = (iterPickup->retrieveNeighborEdge(*iterDropoff));
+                    // if no error after this, we just average it
+                    edge->averageFare(taxi.tripFare);
+                    edge->averageMiles(taxi.tripMiles);
+                    edge->averageTime(taxi.tripSecond);
+                }
+                catch (...)
+                {
+                    // if error, then there is no edge and we must create
+                    Edge *edge = new Edge(taxi.tripFare, taxi.tripMiles, taxi.tripSecond);
+                    // todo check if end node exists
+                    iterPickup->addEdge(*iterDropoff, *edge);
+                }
+            }
+            else
+            {
+                // adds the new edge and the new node
+                Edge *edge = new Edge(taxi.tripFare, taxi.tripMiles, taxi.tripSecond);
+                taxiInfoBegin.addEdge(*iterDropoff, *edge);
+                nodes_.push_back(taxiInfoBegin);
+            }
+        }
+        else
+        {
+            if (iterPickup != nodes_.end())
+            {
+
+                try
+                {
+                    Edge *edge = (iterPickup->retrieveNeighborEdge(taxiInfoDropOff));
+                    // if no error after this, we just average it
+                    edge->averageFare(taxi.tripFare);
+                    edge->averageMiles(taxi.tripMiles);
+                    edge->averageTime(taxi.tripSecond);
+                }
+                catch (...)
+                {
+                    // if error, then there is no edge and we must create
+                    Edge *edge = new Edge(taxi.tripFare, taxi.tripMiles, taxi.tripSecond);
+                    // todo check if end node exists
+                    iterPickup->addEdge(taxiInfoDropOff, *edge);
+                }
+            }
+            else
+            {
+                // adds the new edge and the new node
+                Edge *edge = new Edge(taxi.tripFare, taxi.tripMiles, taxi.tripSecond);
+                taxiInfoBegin.addEdge(taxiInfoDropOff, *edge);
+                nodes_.push_back(taxiInfoBegin);
+            }
+
         }
     }
-    return NULL;
 }
 
-std::vector<Graph::TaxiTripDetails> Graph::read_csv(std::string filename)
+std::vector<Graph::TaxiTripDetails> Graph::readCSV(std::string filename)
 {
 
     std::vector<TaxiTripDetails> result;
@@ -72,9 +131,13 @@ std::vector<Graph::TaxiTripDetails> Graph::read_csv(std::string filename)
         {
             taxiData.push_back(data);
         }
-        result.push_back(TaxiTripDetails(std::stod(taxiData.at(columnInfo["Trip Seconds"])), 
-            std::stod(taxiData.at(columnInfo["Trip Miles"])), std::stod(taxiData.at(columnInfo["Fare"])), 
-            taxiData.at(columnInfo["Pickup Community Area"]), taxiData.at(columnInfo["Dropoff Community Area"])));
+        // ensures no self loops
+        if (taxiData.at(columnInfo["Pickup Community Area"]) != taxiData.at(columnInfo["Dropoff Community Area"]))
+        {
+            result.push_back(TaxiTripDetails(std::stod(taxiData.at(columnInfo["Trip Seconds"])),
+                                             std::stod(taxiData.at(columnInfo["Trip Miles"])), std::stod(taxiData.at(columnInfo["Fare"])),
+                                             taxiData.at(columnInfo["Pickup Community Area"]), taxiData.at(columnInfo["Dropoff Community Area"])));
+        }
     }
 
     // Close file
@@ -82,3 +145,20 @@ std::vector<Graph::TaxiTripDetails> Graph::read_csv(std::string filename)
 
     return result;
 };
+
+std::vector<Node> *Graph::getNodes()
+{
+    return &nodes_;
+}
+
+Node *Graph::getNode(std::string zone)
+{
+    for (unsigned i = 0; i < nodes_.size(); ++i)
+    {
+        if (nodes_.at(i).getZone() == zone)
+        {
+            return &nodes_.at(i);
+        }
+    }
+    return NULL;
+}
