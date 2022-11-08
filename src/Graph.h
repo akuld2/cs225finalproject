@@ -11,7 +11,7 @@
  */
 class Graph
 {
-private:
+public:
     struct TaxiTripDetails
     {
         double tripSecond;

@@ -60,9 +60,9 @@ std::vector<Graph::TaxiTripDetails> Graph::read_csv(std::string filename)
             colIndex++;
         }
     }
-
+    int counter = 0;
     // Read data, line by line
-    while (std::getline(myFile, line))
+    while (std::getline(myFile, line) && counter < 10)
     {
         std::stringstream ss(line);
         std::string data;
@@ -71,6 +71,7 @@ std::vector<Graph::TaxiTripDetails> Graph::read_csv(std::string filename)
         {
             taxiData.push_back(data);
         }
+        counter++;
         result.push_back(TaxiTripDetails(std::stod(taxiData.at(columnInfo["Trip Seconds"])), 
             std::stod(taxiData.at(columnInfo["Trip Miles"])), std::stod(taxiData.at(columnInfo["Fare"])), 
             taxiData.at(columnInfo["Pickup Community Area"]), taxiData.at(columnInfo["Dropoff Community Area"])));
