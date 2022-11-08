@@ -77,7 +77,6 @@ void Graph::buildGraph(std::string filename)
                 taxiInfoBegin.addEdge(taxiInfoDropOff, *edge);
                 nodes_.push_back(taxiInfoBegin);
             }
-
         }
     }
 }
@@ -99,7 +98,7 @@ std::vector<Graph::TaxiTripDetails> Graph::readCSV(std::string filename)
     std::string colName;
     int val;
     std::map<std::string, unsigned> columnInfo;
-
+    unsigned colIndex = 0;
     // Read the column names
     if (myFile.good())
     {
@@ -107,7 +106,7 @@ std::vector<Graph::TaxiTripDetails> Graph::readCSV(std::string filename)
         std::getline(myFile, line);
 
         std::stringstream ss(line);
-        unsigned colIndex = 0;
+
         while (std::getline(ss, colName, ','))
         {
             if (colName == "Trip Seconds" || colName == "Trip Miles" ||
@@ -119,6 +118,7 @@ std::vector<Graph::TaxiTripDetails> Graph::readCSV(std::string filename)
             colIndex++;
         }
     }
+    const unsigned NUM_COL = colIndex + 1;
     int lines = 0;
     // Read data, line by line
     while (std::getline(myFile, line) && lines < 10000)
@@ -131,12 +131,18 @@ std::vector<Graph::TaxiTripDetails> Graph::readCSV(std::string filename)
         {
             taxiData.push_back(data);
         }
-        // ensures no self loops
-        if (taxiData.at(columnInfo["Pickup Community Area"]) != taxiData.at(columnInfo["Dropoff Community Area"]))
+        // ensures that all the data is there per taxi
+        if (NUM_COL == taxiData.size())
         {
-            result.push_back(TaxiTripDetails(std::stod(taxiData.at(columnInfo["Trip Seconds"])),
-                                             std::stod(taxiData.at(columnInfo["Trip Miles"])), std::stod(taxiData.at(columnInfo["Fare"])),
-                                             taxiData.at(columnInfo["Pickup Community Area"]), taxiData.at(columnInfo["Dropoff Community Area"])));
+            // ensures no self loops
+            if (taxiData.at(columnInfo["Pickup Community Area"]) != taxiData.at(columnInfo["Dropoff Community Area"]))
+            {
+
+                // check to make sure all entries are there
+                result.push_back(TaxiTripDetails(std::stod(taxiData.at(columnInfo["Trip Seconds"])),
+                                                 std::stod(taxiData.at(columnInfo["Trip Miles"])), std::stod(taxiData.at(columnInfo["Fare"])),
+                                                 taxiData.at(columnInfo["Pickup Community Area"]), taxiData.at(columnInfo["Dropoff Community Area"])));
+            }
         }
     }
 
