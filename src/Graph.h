@@ -16,15 +16,23 @@ class Graph
        * getNodes() will return an entire list of nodes.
        * @return a pointer to a vector of nodes.
        */
-      std::vector<Node> *getNodes();
+      Graph();
+
+      Graph(int if_neg_1);
+
+      Graph(std::vector<Node*> nodes);
+
+      std::vector<Node*> getNodes();
 
       /**
        * getNode() will retrieve a reference to a node and its content.
        * @param zone the name of the zone
        * @return a pointer to a node with the matching zone
        */
-      Node *getNode(std::string zone);
+      Node* getNode(std::string zone);
+
+      unsigned int getSize();
 
   private:
-      std::vector<Node> nodes_;
+      std::vector<Node*> nodes_;
 };

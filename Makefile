@@ -2,20 +2,19 @@ CXX=clang++
 INCLUDES=-Iincludes/
 CXX_FLAGS=-std=c++20 -g -fstandalone-debug -Wall -Wextra -Werror -pedantic $(INCLUDES)
 
-exec: bin/exec
-tests: bin/tests
+main: bin/main
+test: bin/test
 
-bin/exec: src/main.cc src/Node.hpp src/Graph.hpp src/Edge.hpp
-	${CXX} ${CXX_FLAGS} src/main.cc src/Node.hpp src/Graph.hpp src/Edge.hpp -o bin/exec
+bin/main: src/main.cpp src/Node.hpp src/Graph.hpp src/Edge.hpp
+	${CXX} ${CXX_FLAGS} src/main.cpp -o $@
 
-bin/tests: tests/tests.hpp obj/catch.o src/Node.hpp src/Graph.hpp src/Edge.hpp
-	${CXX} ${CXX_FLAGS} obj/catch.o tests/tests.hpp src/Node.hpp src/Graph.hpp src/Edge.hpp -o bin/tests
+bin/test: tests/tests.cpp src/Node.hpp src/Graph.hpp src/Edge.hpp
+	${CXX} ${CXX_FLAGS} tests/tests.cpp -o bin/test
 
-obj/catch.o: tests/catch.cc
+obj/catch.o: tests/tests.cpp
 	$(CXX) $(CXX_FLAGS) -c $^ -o $@
 
-.DEFAULT_GOAL := tests
-.PHONY: clean exec tests
+.DEFAULT_GOAL := test
 
 clean:
 	rm -fr bin/* obj/*

@@ -1,51 +1,52 @@
 // tests go here
-// #ifndef CATCH_CONFIG_MAIN
-// #define CATCH_CONFIG_MAIN
+#define CATCH_CONFIG_MAIN
+#include "catch.hpp"
 
-#include <catch2/catch_test_macros.hpp>
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <stack>
-#include <../src/Edge.h>
-#include <../src/Graph.h>
-#include <../src/Node.h>
+#include "../src/Edge.h"
+#include "../src/Graph.h"
+#include "../src/Node.h"
 
 using namespace std;
 
 Graph createGraph1() {
     // Below created 5 nodes and edges are not defined fully (eveything is in default vars) 
     // (do we need setters for the fairs, miles, and times ??)
-    Node node1;
-    Node node2;
-    Node node3;
-    Node node4;
-    Node node5;
-    Edge edge1;
-    Edge edge2;
-    Edge edge3;
-    Edge edge4;
-    Edge edge5;
-    node1.setNeighbors(&edge1);
-    node2.setNeighbors(&edge2);
-    node3.setNeighbors(&edge3);
-    node4.setNeighbors(&edge4);
-    node5.setNeighbors(&edge5);
+    /*Node* node1 = nullptr;
+    Node* node2 = nullptr;
+    Node* node3 = nullptr;
+    Node* node4 = nullptr;
+    Node* node5 = nullptr;
+    Edge* edge1 = nullptr;
+    Edge* edge2 = nullptr;
+    Edge* edge3 = nullptr;
+    Edge* edge4 = nullptr;
+    Edge* edge5 = nullptr;
+    node1->setNeighbor(node2, edge1);
+    node2->setNeighbor(node3, edge2);
+    node3->setNeighbor(node4, edge3);
+    node4->setNeighbor(node5, edge4);
+    node5->setNeighbor(node1, edge5);
     std::vector<Node*> vect;
-    vect.push_back(&node1);
-    vect.push_back(&node2);
-    vect.push_back(&node3);
-    vect.push_back(&node4);
-    vect.push_back(&node5);
-    return Graph(vect);
+    vect.push_back(node1);
+    vect.push_back(node2);
+    vect.push_back(node3);
+    vect.push_back(node4);
+    vect.push_back(node5);
+    return Graph(vect);*/
+    Graph g = Graph(-1);
+    return g;
 }
 
 // Basic test cases
 TEST_CASE("initializeGraph1", "[weight=1][part=1]") {
     // initialize and validate creating the graph with 5 test values
     Graph graph = createGraph1();
-    REQUIRE(!graph.getNodes().empty());
+    REQUIRE(!(graph.getNodes().empty()));
 }
 TEST_CASE("initializeGraph2", "[weight=1][part=1]") {
     // initialize and validate creating the graph with 20 different test values
