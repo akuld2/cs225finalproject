@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Node.h"
+#include "Edge.h"
 #include <vector>
 #include <string>
 #include <algorithm>

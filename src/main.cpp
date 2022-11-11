@@ -1,12 +1,16 @@
-#include "../src/Graph.h"
-#include "../src/Edge.h"
-#include "../src/Node.h"
+#include "Graph.h"
+// #include "Edge.h"
+// #include "Node.h"
 
 #include <iostream>
 
-int main() {
-    Graph myGraph("Taxi_Trips.csv");
-    
+int main()
+{
+    // Graph myGraph("Taxi_Trips.csv");
+    std::cout << "hello world" << std::endl;
+    std::cout << "my name is megan ja" << std::endl;
+    Graph* megan = new Graph("helllo from the other side");
+    std::cout << megan << std::endl;
     // std::vector<Graph::TaxiTripDetails> result = myGraph.readCSV("Taxi_Trips.csv");
     // for (auto taxiTrip: result) {
     //     std::cout << taxiTrip.pickupLocation << "  " << taxiTrip.dropoffLocation << std::endl;
