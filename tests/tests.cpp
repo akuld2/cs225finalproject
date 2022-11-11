@@ -16,11 +16,11 @@ using namespace std;
 Graph createGraph1() {
     // Below created 5 nodes and edges are not defined fully (eveything is in default vars) 
     // (do we need setters for the fairs, miles, and times ??)
-    /*Node* node1 = nullptr;
-    Node* node2 = nullptr;
-    Node* node3 = nullptr;
-    Node* node4 = nullptr;
-    Node* node5 = nullptr;
+    Node* node1 = new Node("1");
+    Node* node2 = new Node("2");
+    Node* node3 = new Node("3");
+    Node* node4 = new Node("4");
+    Node* node5 = new Node("5");
     Edge* edge1 = nullptr;
     Edge* edge2 = nullptr;
     Edge* edge3 = nullptr;
@@ -37,9 +37,7 @@ Graph createGraph1() {
     vect.push_back(node3);
     vect.push_back(node4);
     vect.push_back(node5);
-    return Graph(vect);*/
-    Graph g = Graph(-1);
-    return g;
+    return Graph(vect);
 }
 
 // Basic test cases
