@@ -18,8 +18,6 @@ class Graph
        */
       Graph();
 
-      Graph(int if_neg_1);
-
       Graph(std::vector<Node*> nodes);
 
       std::vector<Node*> getNodes();
@@ -38,8 +36,6 @@ class Graph
       Node* getNode(std::string zone);
 
       unsigned int getSize();
-
-      //double minDistance(Node* first, Node* second);
 
       //metric is 0 for fare (cost), 1 for miles (length), and 2 for time
       std::vector<std::pair<Node*, double>> findPathLengths(Node* start, int metric);

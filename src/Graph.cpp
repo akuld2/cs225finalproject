@@ -1,8 +1,8 @@
 #include "Graph.h"
 #include <algorithm>
 #include <queue>
-#include <limits>
 #include <iostream>
+#include <cfloat>
 
 std::vector<Node*> Graph::getNodes() {
     return nodes_;
@@ -21,26 +21,9 @@ Node* Graph::getNode(std::string zone) {
     return NULL;
 }
 
-Graph::Graph(int if_neg_1) {
-    if(if_neg_1 == -1) {
-        nodes_.push_back(nullptr);
-    }
-}
-
 Graph::Graph(std::vector<Node*> nodes) {
     nodes_ = nodes;
 }
-
-/*double Graph::minDistance(Node* first, Node* second) { //unused
-    double minimum_dist = INT16_MAX;
-    if (!first->getNeighbors()[second]) {
-        for (auto it = first->getNeighbors().begin(); it != first->getNeighbors().end(); it++) {
-            minimum_dist = std::min(minimum_dist, minDistance(it->first, second) +
-             first->retrieveNeighborEdge(it->first)->getMiles());
-        }
-    }
-    return minimum_dist;
-}*/
 
 std::vector<std::pair<Node*, double>> Graph::findPathLengths(Node* start, int metric) {
     std::vector<std::pair<Node*, double>> distances = 
@@ -48,7 +31,7 @@ std::vector<std::pair<Node*, double>> Graph::findPathLengths(Node* start, int me
 
     distances.push_back(std::pair<Node*, double>(start, 0));
     for (unsigned int i = 1; i < nodes_.size(); i++) {
-        distances.push_back(std::pair<Node*, double>(nodes_[i], std::numeric_limits<double>::max()));
+        distances.push_back(std::pair<Node*, double>(nodes_[i], DBL_MAX));
     }
 
     std::queue<Node*> queue;
@@ -74,7 +57,7 @@ std::vector<std::pair<Node*, double>> Graph::findPathLengths(Node* start, int me
                 val_to_add = edge->getTime();
             }
             else {
-                distances[0].second = -1; // metric has to be 0-2.
+                distances[0].second = -1.0; // metric has to be 0-2.
                 return distances;
             }
 
