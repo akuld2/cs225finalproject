@@ -32,6 +32,10 @@ public:
     };
 
 public:
+    /**
+     * this will initialize the graph by populating the nodes and edges
+     * @param filename which is the name of the file
+     */
     Graph(std::string filename);
     
     /**
@@ -48,7 +52,7 @@ public:
     Node *getNode(std::string zone);
 
     void printGraph() const;
-    Node* myIterator(Node* tmp);
+    Node* myIterator(std::string zoneName);
 
 private:
     void buildGraph(std::string filename);
