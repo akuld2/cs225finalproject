@@ -50,5 +50,5 @@ public:
 private:
     void buildGraph(std::string filename);
     std::vector<TaxiTripDetails> readCSV(std::string filename);
-    std::vector<Node> nodes_;
+    std::vector<Node*> nodes_;
 };

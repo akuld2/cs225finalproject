@@ -7,13 +7,10 @@ Node::Node(std::string startLocation) {
 
 
 void Node::addEdge(Node& endLocation, Edge& newEdge) {
-    neighbors_.at(endLocation) = newEdge;
-    // std::cout << endLocation << newEdge <<std::endl;
-    // (void) endLocation;
-    // (void) newEdge;
+    neighbors_[&endLocation] = &newEdge;
 }
 
-std::map<Node&, Edge&> *Node::getNeighbors()
+std::map<Node*, Edge*> *Node::getNeighbors()
 {
     return &neighbors_;
 }
@@ -27,25 +24,24 @@ Node* Node::retrieveNeighbor(Node& endLocation)
 {
     for (auto const &neighbor : neighbors_)
     {
-        if (neighbor.first.startingLocation_ == endLocation.getZone())
+        if (neighbor.first->startingLocation_ == endLocation.getZone())
         {
             
-            return &neighbor.first;
+            return neighbor.first;
         }
     }
     return NULL;
 };
 
-// @todo need to fix
 Edge* Node::retrieveNeighborEdge(Node& endLocation) {
     // need to check nullness
-    // if (endLocation == NULL) {
-    //     return NULL;
-    // }
-    return &neighbors_.at(endLocation);
+    if (endLocation == NULL) {
+        return NULL;
+    }
+    return neighbors_.at(&endLocation);
 };
 
-bool Node::operator==(Node* zone)
+bool Node::operator==(Node* zone) const
 {
     return startingLocation_ == zone->getZone();
 };

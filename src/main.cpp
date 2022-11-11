@@ -7,7 +7,7 @@
 int main()
 {
     std::cout << "hello world" << std::endl;
-    // Graph* tmpGraph = new Graph("entry/testDataSet.csv");
-    // delete tmpGraph;
+    Graph* tmpGraph = new Graph("entry/testDataSet.csv");
+    delete tmpGraph;
    
 }

@@ -14,7 +14,7 @@ public:
      * getNeighbors() will return an entire list of neighbors and the edge details.
      * @return a pointer to a map of nodes and edges.
      */
-    std::map<Node&, Edge&> *getNeighbors();
+    std::map<Node*, Edge*> *getNeighbors();
 
     /**
      * getZone() will retrieve the zone name
@@ -38,9 +38,9 @@ public:
      * operator== deems two nodes equal if they have the same zone starting location_
      * @param zone which is the Node
      */
-    bool operator==(Node* zone);
+    bool operator==(Node* zone) const;
 
 private:
     std::string startingLocation_;
-    std::map<Node&, Edge&> neighbors_;
+    std::map<Node*, Edge*> neighbors_;
 };
