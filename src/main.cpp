@@ -9,7 +9,7 @@ int main()
     // Graph myGraph("Taxi_Trips.csv");
     std::cout << "hello world" << std::endl;
     std::cout << "my name is megan ja" << std::endl;
-    Graph* megan = new Graph("helllo from the other side");
+    Graph* megan = new Graph("entry/testDataSet.csv");
     std::cout << megan << std::endl;
     // std::vector<Graph::TaxiTripDetails> result = myGraph.readCSV("Taxi_Trips.csv");
     // for (auto taxiTrip: result) {
