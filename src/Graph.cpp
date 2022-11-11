@@ -2,9 +2,9 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include <utility>  
-#include <stdexcept> 
-#include <sstream>   
+#include <utility>
+#include <stdexcept>
+#include <sstream>
 #include <iostream>
 
 Graph::Graph(std::string filename)
@@ -16,7 +16,8 @@ Node *Graph::graphIterator(std::string zoneName)
 {
     // goes through all of the nodes and sees if the zone exists
     Node *newZone = getNode(zoneName);
-    if (newZone != NULL) {
+    if (newZone != NULL)
+    {
         return newZone;
     }
     // if it doesn't exist, will create a new node, add it to the zone list, and then return it
@@ -52,7 +53,6 @@ void Graph::buildGraph(std::string filename)
     }
 }
 
-
 std::vector<Graph::TaxiTripDetails> Graph::readCSV(std::string filename)
 {
 
@@ -85,9 +85,18 @@ std::vector<Graph::TaxiTripDetails> Graph::readCSV(std::string filename)
                 colName == "Fare" || colName == "Pickup Community Area" ||
                 colName == "Dropoff Community Area")
             {
+
                 columnInfo[colName] = colIndex;
             }
             colIndex++;
+        }
+        // one more check because if there is no comma at the end...
+        if (colName == "Trip Seconds" || colName == "Trip Miles" ||
+            colName == "Fare" || colName == "Pickup Community Area" ||
+            colName == "Dropoff Community Area")
+        {
+
+            columnInfo[colName] = colIndex;
         }
     }
     const unsigned NUM_COL = colIndex;
@@ -125,12 +134,16 @@ std::vector<Graph::TaxiTripDetails> Graph::readCSV(std::string filename)
                 if (taxiData.at(columnInfo["Pickup Community Area"]) != taxiData.at(columnInfo["Dropoff Community Area"]))
                 {
                     // check to make sure all entries are there
-                    result.push_back(TaxiTripDetails(std::stod(taxiData.at(columnInfo["Trip Seconds"])),
-                                                     std::stod(taxiData.at(columnInfo["Trip Miles"])), std::stod(taxiData.at(columnInfo["Fare"])),
-                                                     taxiData.at(columnInfo["Pickup Community Area"]), taxiData.at(columnInfo["Dropoff Community Area"])));
+                    result.push_back(TaxiTripDetails(std::stod(seconds),
+                                                     std::stod(miles), std::stod(fare),
+                                                     pickup, dropoff));
                 }
             }
         }
+    }
+    for (auto res : result)
+    {
+        std::cout << res.pickupLocation << " " << res.tripMiles << std::endl;
     }
 
     // Close file
