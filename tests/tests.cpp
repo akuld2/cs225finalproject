@@ -52,7 +52,7 @@ TEST_CASE("testGraph1", "[weight=1][part=2]") {
     Graph graph = createGraph1();
     REQUIRE(graph.getNode("1") != nullptr);
     REQUIRE(graph.getNode("2") != nullptr);
-    auto distances = graph.findPathLengths(graph.getNode("1"));
+    auto distances = graph.findPathLengths(graph.getNode("1"), 1);
     REQUIRE(!distances.empty());
     /*std::cout << "test1" << std::endl;
 
@@ -62,10 +62,10 @@ TEST_CASE("testGraph1", "[weight=1][part=2]") {
     
     std::cout << "test2" << std::endl;*/
 
-    REQUIRE(graph.findShortestPath(graph.getNode("1"), graph.getNode("2")) == 1.0);
-    REQUIRE(graph.findShortestPath(graph.getNode("1"), graph.getNode("3")) == 3.0);
-    REQUIRE(graph.findShortestPath(graph.getNode("1"), graph.getNode("4")) == 6.0);
-    REQUIRE(graph.findShortestPath(graph.getNode("1"), graph.getNode("5")) == 5.0);
+    REQUIRE(graph.findShortestPath(graph.getNode("1"), graph.getNode("2"), 1) == 1.0);
+    REQUIRE(graph.findShortestPath(graph.getNode("1"), graph.getNode("3"), 1) == 3.0);
+    REQUIRE(graph.findShortestPath(graph.getNode("1"), graph.getNode("4"), 1) == 6.0);
+    REQUIRE(graph.findShortestPath(graph.getNode("1"), graph.getNode("5"), 1) == 5.0);
 }
 
 TEST_CASE("initializeGraph2", "[weight=1][part=1]") {

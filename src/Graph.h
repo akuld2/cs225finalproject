@@ -39,11 +39,12 @@ class Graph
 
       unsigned int getSize();
 
-      double minDistance(Node* first, Node* second);
+      //double minDistance(Node* first, Node* second);
 
-      std::vector<std::pair<Node*, double>> findPathLengths(Node* start);
+      //metric is 0 for fare (cost), 1 for miles (length), and 2 for time
+      std::vector<std::pair<Node*, double>> findPathLengths(Node* start, int metric);
 
-      double findShortestPath(Node* start, Node* end);
+      double findShortestPath(Node* start, Node* end, int metric);
 
   private:
       std::vector<Node*> nodes_;
