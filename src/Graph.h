@@ -33,6 +33,10 @@ class Graph
 
       unsigned int getSize();
 
+      int minDistance(Node* first, Node* second);
+
+      std::vector<Node*> findShortestPath(Node* start, Node* end);
+
   private:
       std::vector<Node*> nodes_;
 };

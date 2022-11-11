@@ -21,7 +21,7 @@ Graph createGraph1() {
     Node* node3 = new Node("3");
     Node* node4 = new Node("4");
     Node* node5 = new Node("5");
-    Edge* edge1 = nullptr;
+    Edge* edge1 = new Edge();
     Edge* edge2 = nullptr;
     Edge* edge3 = nullptr;
     Edge* edge4 = nullptr;

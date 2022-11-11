@@ -3,6 +3,9 @@
 class Edge
 {
 public:
+    Edge();
+
+    Edge(double fare, double miles, double time);
     /**
      * getFare will get the fare of the trip
      * @return fare_

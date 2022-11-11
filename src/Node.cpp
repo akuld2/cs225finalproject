@@ -8,7 +8,7 @@ std::map<Node*, Edge*> Node::getNeighbors()
 std::string Node::getZone()
 {
     return startingLocation_;
-};
+}
 
 Node* Node::retrieveNeighbor(Node* endLocation)
 {
@@ -21,19 +21,19 @@ Node* Node::retrieveNeighbor(Node* endLocation)
     }
 
     return nullptr;
-};
+}
 
 Edge* Node::retrieveNeighborEdge(Node* endLocation) {
     if (endLocation == nullptr) {
         return nullptr;
     }
     return neighbors_[endLocation];
-};
+}
 
 bool Node::operator==(Node zone)
 {
     return startingLocation_ == zone.getZone();
-};
+}
 
 Node::Node() {}
 
