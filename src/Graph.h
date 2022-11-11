@@ -38,7 +38,7 @@ public:
      * getNodes() will return an entire list of nodes.
      * @return a pointer to a vector of nodes.
      */
-    std::vector<Node> *getNodes();
+    std::vector<Node*> *getNodes();
 
     /**
      * getNode() will retrieve a reference to a node and its content.
@@ -46,6 +46,9 @@ public:
      * @return a pointer to a node with the matching zone
      */
     Node *getNode(std::string zone);
+
+    void printGraph() const;
+    Node* myIterator(Node* tmp);
 
 private:
     void buildGraph(std::string filename);

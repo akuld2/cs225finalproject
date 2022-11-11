@@ -20,11 +20,11 @@ std::string Node::getZone()
     return startingLocation_;
 };
 
-Node* Node::retrieveNeighbor(Node& endLocation)
+Node* Node::retrieveNeighbor(Node* endLocation)
 {
     for (auto const &neighbor : neighbors_)
     {
-        if (neighbor.first->startingLocation_ == endLocation.getZone())
+        if (neighbor.first->startingLocation_ == endLocation->getZone())
         {
             
             return neighbor.first;
@@ -33,15 +33,16 @@ Node* Node::retrieveNeighbor(Node& endLocation)
     return NULL;
 };
 
-Edge* Node::retrieveNeighborEdge(Node& endLocation) {
+Edge* Node::retrieveNeighborEdge(Node* endLocation) {
     // need to check nullness
     if (endLocation == NULL) {
         return NULL;
     }
-    return neighbors_.at(&endLocation);
+    return neighbors_.at(endLocation);
 };
 
-bool Node::operator==(Node* zone) const
-{
-    return startingLocation_ == zone->getZone();
-};
+// bool Node::operator==(Node* zone) const
+// {
+//     std::cout << "in the equals" <<std::endl;
+//     return startingLocation_ == zone->getZone();
+// };
