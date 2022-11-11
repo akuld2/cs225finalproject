@@ -34,11 +34,7 @@ public:
      */
     Edge *retrieveNeighborEdge(Node *endLocation);
 
-    /**
-     * operator== deems two nodes equal if they have the same zone starting location_
-     * @param zone which is the Node
-     */
-    // bool operator==(Node* zone) const;
+    
 
 private:
     std::string startingLocation_;

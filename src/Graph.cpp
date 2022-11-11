@@ -2,27 +2,25 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include <utility>   // std::pair
-#include <stdexcept> // std::runtime_error
-#include <sstream>   // std::stringstream
+#include <utility>  
+#include <stdexcept> 
+#include <sstream>   
 #include <iostream>
 
 Graph::Graph(std::string filename)
 {
-    // @todo need to fix build graph and readCSV
     buildGraph(filename);
 }
 
-Node *Graph::myIterator(std::string zoneName)
+Node *Graph::graphIterator(std::string zoneName)
 {
-    for (unsigned i = 0; i < nodes_.size(); ++i)
-    {
-        if (nodes_.at(i)->getZone() == zoneName)
-        {
-            return nodes_.at(i);
-        }
+    // goes through all of the nodes and sees if the zone exists
+    Node *newZone = getNode(zoneName);
+    if (newZone != NULL) {
+        return newZone;
     }
-    Node *newZone = new Node(zoneName);
+    // if it doesn't exist, will create a new node, add it to the zone list, and then return it
+    newZone = new Node(zoneName);
     nodes_.push_back(newZone);
     return newZone;
 }
@@ -30,24 +28,25 @@ Node *Graph::myIterator(std::string zoneName)
 void Graph::buildGraph(std::string filename)
 {
     std::vector<Graph::TaxiTripDetails> result = readCSV(filename);
+    // iterates through entire csv
     for (auto taxi : result)
     {
-        Node *iterPickup = myIterator(taxi.pickupLocation);
-        Node *iterDropoff = myIterator(taxi.dropoffLocation);
+        // will rerieve or create the nodes
+        Node *iterPickup = graphIterator(taxi.pickupLocation);
+        Node *iterDropoff = graphIterator(taxi.dropoffLocation);
 
         try
         {
             Edge *edge = ((iterPickup)->retrieveNeighborEdge(iterDropoff));
-            // if no error after this, we just average it
+            // if no error after this, we just average the edge characteristics
             edge->averageFare(taxi.tripFare);
             edge->averageMiles(taxi.tripMiles);
             edge->averageTime(taxi.tripSecond);
         }
         catch (...)
         {
-            // if error, then there is no edge and we must create
+            // if error, then there is no edge and we must create one
             Edge *edge = new Edge(taxi.tripFare, taxi.tripMiles, taxi.tripSecond);
-            // todo check if end node exists
             (iterPickup)->addEdge(*iterDropoff, *edge);
         }
     }

@@ -41,8 +41,3 @@ Edge* Node::retrieveNeighborEdge(Node* endLocation) {
     return neighbors_.at(endLocation);
 };
 
-// bool Node::operator==(Node* zone) const
-// {
-//     std::cout << "in the equals" <<std::endl;
-//     return startingLocation_ == zone->getZone();
-// };

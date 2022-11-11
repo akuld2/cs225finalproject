@@ -37,12 +37,12 @@ public:
      * @param filename which is the name of the file
      */
     Graph(std::string filename);
-    
+
     /**
      * getNodes() will return an entire list of nodes.
      * @return a pointer to a vector of nodes.
      */
-    std::vector<Node*> *getNodes();
+    std::vector<Node *> *getNodes();
 
     /**
      * getNode() will retrieve a reference to a node and its content.
@@ -51,11 +51,20 @@ public:
      */
     Node *getNode(std::string zone);
 
+    /**
+     * printGraph() will print the starting location, and then under it all of the ending zones
+     */
     void printGraph() const;
-    Node* myIterator(std::string zoneName);
+
+    /**
+     * getNode() will retrieve a reference to a node and its content.
+     * @param zoneName the name of the zone
+     * @return a pointer to a node with the matching zone
+     */
+    Node *graphIterator(std::string zoneName);
 
 private:
     void buildGraph(std::string filename);
     std::vector<TaxiTripDetails> readCSV(std::string filename);
-    std::vector<Node*> nodes_;
+    std::vector<Node *> nodes_;
 };
