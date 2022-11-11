@@ -29,6 +29,13 @@ public:
     Node* retrieveNeighbor(Node *endLocation);
 
     /**
+     * checkNeighborExists() will check to see if the neighbor is there
+     * @param endLocation the name of the endLocation
+     * @return a boolean if there is a edge
+     */
+    bool checkNeighborExists(std::string endLocation);
+
+    /**
      * retrieveNeighborEdge() will retrieve the edge between the two nodes
      * @return the edge between or an empty edge if it doesn't exist
      */
