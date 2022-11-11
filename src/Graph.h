@@ -34,13 +34,17 @@ public:
     };
 
 public:
+    /**
+     * this will initialize the graph by populating the nodes and edges
+     * @param filename which is the name of the file
+     */
     Graph(std::string filename);
-    
+
     /**
      * getNodes() will return an entire list of nodes.
      * @return a pointer to a vector of nodes.
      */
-    std::vector<Node*> *getNodes();
+    std::vector<Node *> *getNodes();
 
     /**
      * getNode() will retrieve a reference to a node and its content.
@@ -49,14 +53,48 @@ public:
      */
     Node *getNode(std::string zone);
 
+    /**
+     * printGraph() will print the starting location, and then under it all of the ending zones
+     */
     void printGraph() const;
-    Node* myIterator(Node* tmp);
 
+    /**
+     * getNode() will retrieve a reference to a node and its content.
+     * @param zoneName the name of the zone
+     * @return a pointer to a node with the matching zone
+     */
+    Node *graphIterator(std::string zoneName);
+
+    /**
+     * BFS() will return the cheapest path to go through all the nodes in a 
+     * connected graph. 
+     * @param start a pointer to the starting zone
+     * @return a vector of node pointers that denotes the cheapest path 
+     * fare-wise
+     */
     std::vector<Node*> BFS(Node* start);
 
 private:
+    /**
+     * buildGraph() is a helper function to build a graph from a CSV file.
+     * @param filename the name of the csv datafile you are using in a string
+     */
     void buildGraph(std::string filename);
-    bool visited(Node* node, std::vector<Node*> vec);
+
+    /**
+     * readCSV() is a helper function to read data from a CSV file.
+     * @param filename the name of the csv datafile you are using in a string
+     * @return a vector filled with the relevant data from each entry in the file
+     */
     std::vector<TaxiTripDetails> readCSV(std::string filename);
-    std::vector<Node*> nodes_;
+
+    /**
+     * visited() checks if the node pointer node is in the vector passed
+     * to the function.
+     * @param node the node to search for
+     * @param vec the vector to search in
+     * @return if the node is in the vector
+     */
+    bool visited(Node* node, std::vector<Node*> vec);
+    std::vector<Node *> nodes_;
 };

@@ -2,92 +2,53 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include <utility>   // std::pair
-#include <stdexcept> // std::runtime_error
-#include <sstream>   // std::stringstream
+#include <utility>
+#include <stdexcept>
+#include <sstream>
 #include <iostream>
 
 Graph::Graph(std::string filename)
 {
-    // @todo need to fix build graph and readCSV
     buildGraph(filename);
 }
 
-Node* Graph::myIterator(Node* tmp) {
-    for (unsigned i = 0; i < nodes_.size(); ++i) {
-        if (nodes_.at(i)->getZone() == tmp->getZone()) {
-            return nodes_.at(i);
-        }
+Node *Graph::graphIterator(std::string zoneName)
+{
+    // goes through all of the nodes and sees if the zone exists
+    Node *newZone = getNode(zoneName);
+    if (newZone != NULL)
+    {
+        return newZone;
     }
-    return NULL;
+    // if it doesn't exist, will create a new node, add it to the zone list, and then return it
+    newZone = new Node(zoneName);
+    nodes_.push_back(newZone);
+    return newZone;
 }
 
 void Graph::buildGraph(std::string filename)
 {
     std::vector<Graph::TaxiTripDetails> result = readCSV(filename);
+    // iterates through entire csv
     for (auto taxi : result)
     {
-        Node *taxiInfoBegin = new Node(taxi.pickupLocation);
-        Node *taxiInfoDropOff = new Node(taxi.dropoffLocation);
-        Node* iterPickup = myIterator(taxiInfoBegin);
-        Node* iterDropoff = myIterator(taxiInfoDropOff);
-        if (iterDropoff != NULL)
+        // will rerieve or create the nodes
+        Node *iterPickup = graphIterator(taxi.pickupLocation);
+        Node *iterDropoff = graphIterator(taxi.dropoffLocation);
+
+        try
         {
-            if (iterPickup != NULL)
-            {
-                try
-                {
-                    Edge *edge = ((iterPickup)->retrieveNeighborEdge(iterDropoff));
-                    // if no error after this, we just average it
-                    edge->averageFare(taxi.tripFare);
-                    edge->averageMiles(taxi.tripMiles);
-                    edge->averageTime(taxi.tripSecond);
-                }
-                catch (...)
-                {
-                    // if error, then there is no edge and we must create
-                    Edge *edge = new Edge(taxi.tripFare, taxi.tripMiles, taxi.tripSecond);
-                    // todo check if end node exists
-                    (iterPickup)->addEdge(*iterDropoff, *edge);
-                }
-            }
-            else
-            {
-                // adds the new edge and the new node
-                Edge *edge = new Edge(taxi.tripFare, taxi.tripMiles, taxi.tripSecond);
-                taxiInfoBegin->addEdge(*iterDropoff, *edge);
-                nodes_.push_back(taxiInfoBegin);
-            }
+            Edge *edge = ((iterPickup)->retrieveNeighborEdge(iterDropoff));
+            // if no error after this, we just average the edge characteristics
+            edge->averageFare(taxi.tripFare);
+            edge->averageMiles(taxi.tripMiles);
+            edge->averageTime(taxi.tripSecond);
         }
-        else
+        catch (...)
         {
-            if (iterPickup != NULL)
-            {
-                nodes_.push_back(taxiInfoDropOff);
-                try
-                {
-                    Edge *edge = ((iterPickup)->retrieveNeighborEdge(taxiInfoDropOff));
-                    // if no error after this, we just average it
-                    edge->averageFare(taxi.tripFare);
-                    edge->averageMiles(taxi.tripMiles);
-                    edge->averageTime(taxi.tripSecond);
-                }
-                catch (...)
-                {
-                    // if error, then there is no edge and we must create
-                    Edge *edge = new Edge(taxi.tripFare, taxi.tripMiles, taxi.tripSecond);
-                    // todo check if end node exists
-                    (iterPickup)->addEdge(*taxiInfoDropOff, *edge);
-                }
-            }
-            else
-            {
-                // adds the new edge and the new node
-                Edge *edge = new Edge(taxi.tripFare, taxi.tripMiles, taxi.tripSecond);
-                taxiInfoBegin->addEdge(*taxiInfoDropOff, *edge);
-                nodes_.push_back(taxiInfoBegin);
-                nodes_.push_back(taxiInfoDropOff);
-            }
+            // if error, then there is no edge and we must create one
+            Edge *edge = new Edge(taxi.tripFare, taxi.tripMiles, taxi.tripSecond);
+            (iterPickup)->addEdge(*iterDropoff, *edge);
         }
     }
 }
@@ -119,14 +80,23 @@ std::vector<Graph::TaxiTripDetails> Graph::readCSV(std::string filename)
 
         while (std::getline(ss, colName, ','))
         {
-            std::cout << "colname: " << colName << std::endl;
+            // if the colName is one of the desired columns that we need information, we will keep track of the index
             if (colName == "Trip Seconds" || colName == "Trip Miles" ||
                 colName == "Fare" || colName == "Pickup Community Area" ||
                 colName == "Dropoff Community Area")
             {
+
                 columnInfo[colName] = colIndex;
             }
             colIndex++;
+        }
+        // one more check because if there is no comma at the end...
+        if (colName == "Trip Seconds" || colName == "Trip Miles" ||
+            colName == "Fare" || colName == "Pickup Community Area" ||
+            colName == "Dropoff Community Area")
+        {
+
+            columnInfo[colName] = colIndex;
         }
     }
     const unsigned NUM_COL = colIndex;
@@ -157,18 +127,23 @@ std::vector<Graph::TaxiTripDetails> Graph::readCSV(std::string filename)
             fare.erase(remove(fare.begin(), fare.end(), ' '), fare.end());
             std::string miles = (taxiData.at(columnInfo["Trip Miles"]));
             miles.erase(remove(miles.begin(), miles.end(), ' '), miles.end());
-            if (seconds != " " && pickup != " " && dropoff != " " && fare != " " && miles != " ")
+            // if any of the fields are empty, won't add at all
+            if (seconds != "" && pickup != "" && dropoff != "" && fare != "" && miles != "")
             {
                 // ensures no self loops
                 if (taxiData.at(columnInfo["Pickup Community Area"]) != taxiData.at(columnInfo["Dropoff Community Area"]))
                 {
                     // check to make sure all entries are there
-                    result.push_back(TaxiTripDetails(std::stod(taxiData.at(columnInfo["Trip Seconds"])),
-                                                     std::stod(taxiData.at(columnInfo["Trip Miles"])), std::stod(taxiData.at(columnInfo["Fare"])),
-                                                     taxiData.at(columnInfo["Pickup Community Area"]), taxiData.at(columnInfo["Dropoff Community Area"])));
+                    result.push_back(TaxiTripDetails(std::stod(seconds),
+                                                     std::stod(miles), std::stod(fare),
+                                                     pickup, dropoff));
                 }
             }
         }
+    }
+    for (auto res : result)
+    {
+        std::cout << res.pickupLocation << " " << res.tripMiles << std::endl;
     }
 
     // Close file
