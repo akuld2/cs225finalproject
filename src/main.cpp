@@ -9,6 +9,8 @@ int main()
     std::cout << "hello world" << std::endl;
     Graph* tmpGraph = new Graph("entry/testDataSet.csv");
     tmpGraph->printGraph();
+    std::cout << "\n\n" << std::endl;
+    tmpGraph->BFS(tmpGraph->getNodes()->at(0));
     delete tmpGraph;
    
 }

@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <queue>
+#include <float.h>
 
 /**
  * Graph class is our "main class" which will be a container for our graph.
@@ -63,8 +65,36 @@ public:
      */
     Node *graphIterator(std::string zoneName);
 
+    /**
+     * BFS() will return the cheapest path to go through all the nodes in a 
+     * connected graph. 
+     * @param start a pointer to the starting zone
+     * @return a vector of node pointers that denotes the cheapest path 
+     * fare-wise
+     */
+    std::vector<Node*> BFS(Node* start);
+
 private:
+    /**
+     * buildGraph() is a helper function to build a graph from a CSV file.
+     * @param filename the name of the csv datafile you are using in a string
+     */
     void buildGraph(std::string filename);
+
+    /**
+     * readCSV() is a helper function to read data from a CSV file.
+     * @param filename the name of the csv datafile you are using in a string
+     * @return a vector filled with the relevant data from each entry in the file
+     */
     std::vector<TaxiTripDetails> readCSV(std::string filename);
+
+    /**
+     * visited() checks if the node pointer node is in the vector passed
+     * to the function.
+     * @param node the node to search for
+     * @param vec the vector to search in
+     * @return if the node is in the vector
+     */
+    bool visited(Node* node, std::vector<Node*> vec);
     std::vector<Node *> nodes_;
 };
