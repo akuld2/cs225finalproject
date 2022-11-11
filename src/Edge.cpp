@@ -1,5 +1,12 @@
 #include "Edge.h"
 
+Edge::Edge(double newFare, double newMiles, double newTime) {
+    fare_ = newFare;
+    miles_ = newMiles;
+    time_ = newTime;
+}
+
+
 double Edge::getFare() {
     return fare_;
 }
