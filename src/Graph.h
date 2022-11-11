@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <queue>
+#include <float.h>
 
 /**
  * Graph class is our "main class" which will be a container for our graph.
@@ -50,8 +52,11 @@ public:
     void printGraph() const;
     Node* myIterator(Node* tmp);
 
+    std::vector<Node*> BFS(Node* start);
+
 private:
     void buildGraph(std::string filename);
+    bool visited(Node* node, std::vector<Node*> vec);
     std::vector<TaxiTripDetails> readCSV(std::string filename);
     std::vector<Node*> nodes_;
 };

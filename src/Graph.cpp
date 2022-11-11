@@ -206,4 +206,54 @@ void Graph::printGraph() const
         }
         std::cout << "----------" << std::endl;
     }
-};
+}
+
+bool Graph::visited(Node* node, std::vector<Node*> vec) {
+    for (unsigned i = 0; i < vec.size(); ++i) {
+        if (vec.at(i)->getZone() == node->getZone()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+std::vector<Node*> Graph::BFS(Node* start) {
+    std::vector<Node*> cheapestPath;
+    std::vector<Node*> visitedNodes; 
+    std::queue<Node*> queue;
+
+    cheapestPath.push_back(start);
+    queue.push(start);
+    visitedNodes.push_back(start);
+    
+    while (!queue.empty()) {
+        Node* top = queue.front();
+        queue.pop();
+
+        std::map<Node *, Edge *>::iterator it;
+        Node* minNode = NULL;
+        double minFare = DBL_MAX;
+        
+        for (it = top->getNeighbors()->begin(); it != top->getNeighbors()->end(); it++) {
+            if (!visited(it->first, visitedNodes)) {
+                queue.push(it->first);
+                visitedNodes.push_back(it->first);
+                if (it->second->getFare() < minFare) {
+                    minFare = it->second->getFare();
+                    minNode = it->first;
+                }
+            }
+        }
+        if (minNode != NULL) {
+            cheapestPath.push_back(minNode);
+        } else {
+            cheapestPath.push_back(top);
+        }
+    }
+    
+    // for (auto node : cheapestPath) {
+    //     std::cout << node->getZone() << ", ";
+    // }
+    // std::cout << std::endl;
+    return cheapestPath;
+}
