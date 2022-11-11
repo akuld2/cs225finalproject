@@ -1,6 +1,7 @@
 #include "Node.h"
 #include <iostream>
 
+
 Node::Node(std::string startLocation)
 {
     startingLocation_ = startLocation;
@@ -55,4 +56,20 @@ bool Node::checkNeighborExists(std::string endLocation)
         }
     }
     return false;
+};
+
+std::vector<double> Node::retrieveNeighborEdgeData(std::string endLocation)
+{
+    std::map<Node *, Edge *>::iterator it;
+    std::vector<double> values;
+    for (it = this->getNeighbors()->begin(); it != this->getNeighbors()->end(); it++)
+    {
+        if (it->first->getZone() == endLocation) {
+            values.push_back(it->second->getFare());
+            values.push_back(it->second->getTime());
+            values.push_back(it->second->getMiles());
+            return values;
+        }
+    }
+    return values;
 };

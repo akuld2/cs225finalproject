@@ -5,6 +5,7 @@
 #include <sstream>
 #include <string>
 #include <stack>
+#include <vector>
 #include "../src/Edge.h"
 #include "../src/Graph.h"
 #include "../src/Node.h"
@@ -41,7 +42,22 @@ TEST_CASE("Test Build Graph with medium dataset", "[weight=1][part=1]") {
     REQUIRE(graph->getNode("43")->checkNeighborExists("7") == true);
     REQUIRE(graph->getNode("43")->checkNeighborExists("8") == true);
 
-    // then check if the edges are valid
+
+
+    // then check if the edges have the valid values
+    REQUIRE(graph->getNode("7")->retrieveNeighborEdgeData("24") == std::vector<double>{24.00,1345,8.44});
+    REQUIRE(graph->getNode("24")->retrieveNeighborEdgeData("3") == std::vector<double>{15, 1101, 9,1});
+    REQUIRE(graph->getNode("3")->retrieveNeighborEdgeData("8") == std::vector<double>{17, 685, 8,5});
+    REQUIRE(graph->getNode("8")->retrieveNeighborEdgeData("24") == std::vector<double>{9,1256,2,23});
+    REQUIRE(graph->getNode("8")->retrieveNeighborEdgeData("56") == std::vector<double>{5,1800,4});
+    REQUIRE(graph->getNode("8")->retrieveNeighborEdgeData("7") == std::vector<double>{11,829, 3.79});
+    REQUIRE(graph->getNode("56")->retrieveNeighborEdgeData("43") == std::vector<double>{3.00,357,16.75});
+    REQUIRE(graph->getNode("56")->retrieveNeighborEdgeData("3") == std::vector<double>{6.00,660,3});
+    REQUIRE(graph->getNode("56")->retrieveNeighborEdgeData("32") == std::vector<double>{10.00,762,0.3});
+    REQUIRE(graph->getNode("32")->retrieveNeighborEdgeData("43") == std::vector<double>{30.00,357,16.75});
+    REQUIRE(graph->getNode("32")->retrieveNeighborEdgeData("3") == std::vector<double>{3.25,1201,0.15});
+    REQUIRE(graph->getNode("43")->retrieveNeighborEdgeData("7") == std::vector<double>{12,940,1.95});
+    REQUIRE(graph->getNode("43")->retrieveNeighborEdgeData("8") == std::vector<double>{113.00,693,1.5});
     delete graph;
     
 }

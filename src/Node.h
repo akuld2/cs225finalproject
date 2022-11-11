@@ -3,6 +3,7 @@
 #include "Edge.h"
 #include <map>
 #include <string>
+#include <vector>
 
 class Node
 {
@@ -30,6 +31,7 @@ public:
 
     /**
      * checkNeighborExists() will check to see if the neighbor is there
+     * mainly for testing purposes
      * @param endLocation the name of the endLocation
      * @return a boolean if there is a edge
      */
@@ -40,6 +42,12 @@ public:
      * @return the edge between or an empty edge if it doesn't exist
      */
     Edge *retrieveNeighborEdge(Node *endLocation);
+
+    /**
+     * retrieveNeighborEdgeData() will retrieve the edge databetween the two nodes
+     * @return a vector of doubles for each piece of data (fare, seconds, miles)
+     */
+    std::vector<double> retrieveNeighborEdgeData(std::string endLocation);
 
     
 
