@@ -24,6 +24,12 @@ class Graph
 
       std::vector<Node*> getNodes();
 
+      int get_idx(std::vector<std::pair<Node*, double>> distances, Node* destination);
+
+      std::vector<double> get_seconds(std::vector<std::pair<Node*, double>> distances);
+
+      std::vector<Node*> get_firsts(std::vector<std::pair<Node*, double>> distances);
+
       /**
        * getNode() will retrieve a reference to a node and its content.
        * @param zone the name of the zone
@@ -33,9 +39,11 @@ class Graph
 
       unsigned int getSize();
 
-      int minDistance(Node* first, Node* second);
+      double minDistance(Node* first, Node* second);
 
-      std::vector<Node*> findShortestPath(Node* start, Node* end);
+      std::vector<std::pair<Node*, double>> findPathLengths(Node* start);
+
+      double findShortestPath(Node* start, Node* end);
 
   private:
       std::vector<Node*> nodes_;
