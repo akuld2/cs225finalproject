@@ -72,9 +72,13 @@ TEST_CASE("Test Build Graph with medium dataset", "[part=1]")
     REQUIRE(graph->getNode("43")->retrieveNeighborEdgeData("8") == std::vector<double>{12,940,1.95});
     delete graph;
 }
-TEST_CASE("initializeGraph2", "[weight=1][part=1]")
+TEST_CASE("test averaging the edges", "[weight=1][part=1]")
 {
-    REQUIRE(true);
+    Graph *graph = new Graph("datasets/multipleEdges.csv");
+    graph->printGraph();
+    REQUIRE(graph->getNode("24")->retrieveNeighborEdgeData("35") == std::vector<double>{18,15,5.25});
+    delete graph;
+    
 }
 TEST_CASE("initializeEdge", "[weight=1][part=1]")
 {

@@ -43,6 +43,7 @@ void Graph::buildGraph(std::string filename)
             edge->averageFare(taxi.tripFare);
             edge->averageMiles(taxi.tripMiles);
             edge->averageTime(taxi.tripSecond);
+            edge->incrementTotal();
         }
         catch (...)
         {
@@ -114,6 +115,7 @@ std::vector<Graph::TaxiTripDetails> Graph::readCSV(std::string filename)
         }
         // need to add additional checks here
         // ensures that all the data is there per taxi
+        
         if (NUM_COL == taxiData.size())
         {
             // makes sure that they are not empty strings
@@ -141,10 +143,7 @@ std::vector<Graph::TaxiTripDetails> Graph::readCSV(std::string filename)
             }
         }
     }
-    for (auto res : result)
-    {
-        std::cout << res.pickupLocation << " " << res.tripMiles << std::endl;
-    }
+    
 
     // Close file
     myFile.close();

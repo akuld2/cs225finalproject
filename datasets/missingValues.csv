@@ -1,9 +1,9 @@
-Pickup Community Area,Dropoff Community Area,Fare,Trip Seconds,Trip Miles
-,89,67,867,6.3
-86,,4,40,0.7
-86,87,,216,1.3
-87,85,31,,
-88,96,53,453,5.8
-89,87,,,8.3
-89,91,87,197,9.7
-90,88,7,377,1.1
+Pickup Community Area,Dropoff Community Area,Fare,Trip Seconds,Trip Miles,
+,89,67,867,6.3,
+86,,4,40,0.7,
+86,87,,216,1.3,
+87,85,31,,,
+88,96,53,453,5.8,
+89,87,,,8.3,
+89,91,87,197,9.7,
+90,88,7,377,1.1,
