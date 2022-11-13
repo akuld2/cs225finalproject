@@ -15,7 +15,7 @@ using namespace std;
 // Basic test cases
 TEST_CASE("Test Build Graph with medium dataset", "[part=1]")
 {
-    Graph *graph = new Graph("entry/mediumBasic.csv");
+    Graph *graph = new Graph("datasets/mediumBasic.csv");
 
     // first check if all of the nodes are there
     REQUIRE(graph->getNode("7") != NULL);
