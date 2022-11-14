@@ -45,7 +45,7 @@ Graph createGraph1() {
 TEST_CASE("initializeGraph1", "[weight=1][part=1]") {
     // initialize and validate creating the graph with 5 test values
     Graph graph = createGraph1();
-    REQUIRE(!(graph.getNodes().empty()));
+    REQUIRE(!(graph.getNodes()->empty()));
 }
 
 TEST_CASE("testGraph1", "[weight=1][part=2]") {

@@ -15,7 +15,7 @@ class Node
 
       Node(std::string start);
 
-      std::map<Node*, Edge*> getNeighbors();
+      std::map<Node*, Edge*>* getNeighbors();
 
       void setNeighbor(Node* new_node, Edge* new_edge);
 

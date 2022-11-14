@@ -4,8 +4,8 @@
 #include <iostream>
 #include <cfloat>
 
-std::vector<Node*> Graph::getNodes() {
-    return nodes_;
+std::vector<Node*>* Graph::getNodes() {
+    return &nodes_;
 }
 
 unsigned int Graph::getSize() {
@@ -40,7 +40,7 @@ std::vector<std::pair<Node*, double>> Graph::findPathLengths(Node* start, int me
         Node* front = queue.front();
         queue.pop();
 
-        for (auto neighbor : front->getNeighbors()) {
+        for (auto neighbor : *(front->getNeighbors())) {
             Edge* edge = neighbor.second;
             Node* destination = neighbor.first;
 

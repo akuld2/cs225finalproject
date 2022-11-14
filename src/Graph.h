@@ -20,7 +20,7 @@ class Graph
 
       Graph(std::vector<Node*> nodes);
 
-      std::vector<Node*> getNodes();
+      std::vector<Node*>* getNodes();
       
       /**
        * @brief Gets the index of the node from the distances vector
