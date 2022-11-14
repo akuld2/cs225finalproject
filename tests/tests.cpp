@@ -13,9 +13,9 @@
 using namespace std;
 
 // Basic test cases
-TEST_CASE("Test Build Graph with medium dataset", "[weight=1][part=1]")
+TEST_CASE("Test Build Graph with medium dataset", "[part=1]")
 {
-    Graph *graph = new Graph("entry/testDataSet.csv");
+    Graph *graph = new Graph("datasets/mediumBasic.csv");
 
     // first check if all of the nodes are there
     REQUIRE(graph->getNode("7") != NULL);
@@ -72,54 +72,67 @@ TEST_CASE("Test Build Graph with medium dataset", "[weight=1][part=1]")
     REQUIRE(graph->getNode("43")->retrieveNeighborEdgeData("8") == std::vector<double>{12,940,1.95});
     delete graph;
 }
-TEST_CASE("initializeGraph2", "[weight=1][part=1]")
+TEST_CASE("test averaging the edges", "[weight=1][part=1]")
 {
-    REQUIRE(true);
+    Graph *graph = new Graph("datasets/multipleEdges.csv");
+    REQUIRE(graph->getNode("24")->retrieveNeighborEdgeData("35") == std::vector<double>{18,15,5.25});
+    delete graph;
+    
 }
-TEST_CASE("initializeEdge", "[weight=1][part=1]")
+TEST_CASE("test if bad data is inputted", "[weight=1][part=1]")
 {
-    REQUIRE(true);
-}
-TEST_CASE("initializeNode", "[weight=1][part=1]")
-{
-    REQUIRE(true);
+    Graph *graph = new Graph("datasets/missingValues.csv");
+    REQUIRE(graph->getNode("89") != NULL);
+    REQUIRE(graph->getNode("91") != NULL);
+    REQUIRE(graph->getNode("90") != NULL);
+    REQUIRE(graph->getNode("88") != NULL);
+    REQUIRE(graph->getNode("96") != NULL);
+    REQUIRE(graph->getNode("86") == NULL);
+    REQUIRE(graph->getNode("87") == NULL);
+    REQUIRE(graph->getNode("85") == NULL);
+    delete graph;
 }
 
-// Advanced test cases
-TEST_CASE("testTraverse1", "[weight=1][part=2]")
-{
-    // testing traversing the tree for the shortest path (dataset 1)
-    REQUIRE(true);
-}
-TEST_CASE("testTraverse2", "[weight=1][part=2]")
-{
-    // testing traversing the tree for the shortest path (dataset 2)
-    REQUIRE(true);
-}
-TEST_CASE("testShortestPathEmpty", "[weight=1][part=2]")
-{
-    // testing traversing the tree for at least one empty variable
-    REQUIRE(true);
-}
-TEST_CASE("testShortestPath1 dataset1", "[weight=1][part=2]")
-{
-    // testing traversing the tree for the shortest path (dataset 1)
-    REQUIRE(true);
-}
-TEST_CASE("testShortestPath2 dataset1", "[weight=1][part=2]")
-{
-    // testing traversing the tree for the shortest path (dataset 1)
-    REQUIRE(true);
-}
-TEST_CASE("testShortestPath3 dataset2", "[weight=1][part=2]")
-{
-    // testing traversing the tree for the shortest path (dataset 2)
-    REQUIRE(true);
-}
-TEST_CASE("testShortestPath4 dataset2", "[weight=1][part=2]")
-{
-    // testing traversing the tree for the shortest path (dataset 2)
-    REQUIRE(true);
-}
+// TEST_CASE("initializeNode", "[weight=1][part=1]")
+// {
+//     REQUIRE(true);
+// }
+
+// // Advanced test cases
+// TEST_CASE("testTraverse1", "[weight=1][part=2]")
+// {
+//     // testing traversing the tree for the shortest path (dataset 1)
+//     REQUIRE(true);
+// }
+// TEST_CASE("testTraverse2", "[weight=1][part=2]")
+// {
+//     // testing traversing the tree for the shortest path (dataset 2)
+//     REQUIRE(true);
+// }
+// TEST_CASE("testShortestPathEmpty", "[weight=1][part=2]")
+// {
+//     // testing traversing the tree for at least one empty variable
+//     REQUIRE(true);
+// }
+// TEST_CASE("testShortestPath1 dataset1", "[weight=1][part=2]")
+// {
+//     // testing traversing the tree for the shortest path (dataset 1)
+//     REQUIRE(true);
+// }
+// TEST_CASE("testShortestPath2 dataset1", "[weight=1][part=2]")
+// {
+//     // testing traversing the tree for the shortest path (dataset 1)
+//     REQUIRE(true);
+// }
+// TEST_CASE("testShortestPath3 dataset2", "[weight=1][part=2]")
+// {
+//     // testing traversing the tree for the shortest path (dataset 2)
+//     REQUIRE(true);
+// }
+// TEST_CASE("testShortestPath4 dataset2", "[weight=1][part=2]")
+// {
+//     // testing traversing the tree for the shortest path (dataset 2)
+//     REQUIRE(true);
+// }
 
 // #endif
