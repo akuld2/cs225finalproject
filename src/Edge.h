@@ -42,8 +42,14 @@ public:
      */
     void averageTime(double newTime);
 
+    /**
+     * increment total will increment the number of edges we are averaging
+     */
+    void incrementTotal();
+
 private:
     double fare_;
     double miles_;
     double time_;
+    unsigned total_ = 0;
 };
