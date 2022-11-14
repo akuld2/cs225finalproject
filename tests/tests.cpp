@@ -98,17 +98,53 @@ TEST_CASE("test if bad data is inputted", "[weight=1][part=1]")
 //     REQUIRE(true);
 // }
 
-// // Advanced test cases
-// TEST_CASE("testTraverse1", "[weight=1][part=2]")
+// Advanced test cases
+TEST_CASE("testTraverse1", "[weight=1][part=2]")
+{
+    // testing traversing the tree for the shortest path (dataset smallBasic)
+    Graph *graph = new Graph("datasets/smallBasic.csv");
+    std::vector<Node*> path = graph->BFS(graph->getNodes()->at(0)); // first node is 1
+
+    std::stringstream ss;
+    for (unsigned i = 0; i < path.size(); i++) {
+        ss << path.at(i)->getZone() << " ";
+    }
+    REQUIRE(ss == "1 2 3 ");
+
+    delete graph;
+}
+
+TEST_CASE("testTraverse2", "[weight=1][part=2]")
+{
+    // testing traversing the tree for the shortest path (dataset mediumBasic)
+    Graph *graph = new Graph("datasets/mediumBasic.csv");
+    std::vector<Node*> path = graph->BFS(graph->getNodes()->at(0)); // first node is 7
+
+    std::stringstream ss;
+    for (unsigned i = 0; i < path.size(); i++) {
+        ss << path.at(i)->getZone() << " ";
+    }
+    REQUIRE(ss == "7 24 3 8 56 32 43 ");
+
+    delete graph;
+}
+
+// TEST_CASE("testTraverse3", "[weight=1][part=2]")
 // {
-//     // testing traversing the tree for the shortest path (dataset 1)
-//     REQUIRE(true);
+//     // testing traversing the tree for the shortest path (dataset hardBasic)
+//     Graph *graph = new Graph("datasets/hardBasic.csv");
+//     std::vector<Node*> path = graph->BFS(graph->getNodes()->at(0)); // first node is 3
+
+//     std::stringstream ss;
+//     for (unsigned i = 0; i < path.size(); i++) {
+//         ss << path.at(i)->getZone() << " ";
+//     }
+//     REQUIRE(ss == "3 8 56 32 43 7 24 96 95 90 92 91 ");  // not finished yet
+
+//     delete graph;
 // }
-// TEST_CASE("testTraverse2", "[weight=1][part=2]")
-// {
-//     // testing traversing the tree for the shortest path (dataset 2)
-//     REQUIRE(true);
-// }
+
+// // Dikstra's (???)
 // TEST_CASE("testShortestPathEmpty", "[weight=1][part=2]")
 // {
 //     // testing traversing the tree for at least one empty variable
