@@ -99,9 +99,9 @@ TEST_CASE("test if bad data is inputted", "[weight=1][part=1]")
 // }
 
 // Advanced test cases
-TEST_CASE("testTraverse1", "[weight=1][part=2]")
+TEST_CASE("test cheapest path small", "[weight=1][part=2]")
 {
-    // testing traversing the tree for the shortest path (dataset smallBasic)
+    // testing traversing the tree for the cheapest path (dataset smallBasic)
     Graph *graph = new Graph("datasets/smallBasic.csv");
     std::vector<Node*> path = graph->BFS(graph->getNodes()->at(0)); // first node is 1
 
@@ -114,9 +114,9 @@ TEST_CASE("testTraverse1", "[weight=1][part=2]")
     delete graph;
 }
 
-TEST_CASE("testTraverse2", "[weight=1][part=2]")
+TEST_CASE("test cheapest path medium", "[weight=1][part=2]")
 {
-    // testing traversing the tree for the shortest path (dataset mediumBasic)
+    // testing traversing the tree for the cheapest path (dataset mediumBasic)
     Graph *graph = new Graph("datasets/mediumBasic.csv");
     std::vector<Node*> path = graph->BFS(graph->getNodes()->at(0)); // first node is 7
 
@@ -129,9 +129,9 @@ TEST_CASE("testTraverse2", "[weight=1][part=2]")
     delete graph;
 }
 
-TEST_CASE("testTraverse3", "[weight=1][part=2]")
+TEST_CASE("test cheapest path large", "[weight=1][part=2]")
 {
-    // testing traversing the tree for the shortest path (dataset hardBasic)
+    // testing traversing the tree for the cheapest path (dataset hardBasic)
     Graph *graph = new Graph("datasets/hardBasic.csv");
     std::vector<Node*> path = graph->BFS(graph->getNodes()->at(0)); // first node is 3
 
