@@ -8,8 +8,6 @@
 class Node
 {
   public:
-    Node();
-
     Node(std::string startLocation);
 
     bool operator==(Node zone);
