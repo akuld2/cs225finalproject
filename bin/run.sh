@@ -1,2 +1,2 @@
 make exec
-./bin/exec
+./exec

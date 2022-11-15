@@ -1,3 +1,5 @@
 .vscode/
-bin/
+bin/exec
+bin/tests
+bin/main
 obj/

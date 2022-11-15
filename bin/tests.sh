@@ -1,2 +1,2 @@
 make tests
-./bin/tests
+./tests
