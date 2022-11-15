@@ -7,10 +7,15 @@
 
 class Node
 {
-public:
+  public:
     Node(std::string startLocation);
 
+    bool operator==(Node zone);
+
+    void setNeighbor(Node* new_node, Edge* new_edge);
+
     void addEdge(Node& endLocation, Edge& newEdge);
+
     /**
      * getNeighbors() will return an entire list of neighbors and the edge details.
      * @return a pointer to a map of nodes and edges.
