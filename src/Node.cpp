@@ -1,7 +1,6 @@
 #include "Node.h"
 #include <iostream>
 
-
 Node::Node(std::string startLocation)
 {
     startingLocation_ = startLocation;
@@ -20,7 +19,17 @@ std::map<Node *, Edge *> *Node::getNeighbors()
 std::string Node::getZone()
 {
     return startingLocation_;
-};
+}
+
+bool Node::operator==(Node zone)
+{
+    return startingLocation_ == zone.getZone();
+}
+
+void Node::setNeighbor(Node* new_node, Edge* new_edge) {
+    std::pair<Node*, Edge*> pair = std::pair<Node*, Edge*>(new_node, new_edge);
+    neighbors_.insert(pair);
+}
 
 Node *Node::retrieveNeighbor(Node *endLocation)
 {
