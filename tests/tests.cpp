@@ -105,9 +105,9 @@ TEST_CASE("testTraverse1", "[weight=1][part=2]")
     Graph *graph = new Graph("datasets/smallBasic.csv");
     std::vector<Node*> path = graph->BFS(graph->getNodes()->at(0)); // first node is 1
 
-    std::stringstream ss;
+    std::string ss = "";
     for (unsigned i = 0; i < path.size(); i++) {
-        ss << path.at(i)->getZone() << " ";
+        ss += path.at(i)->getZone() + " ";
     }
     REQUIRE(ss == "1 2 3 ");
 
@@ -120,29 +120,30 @@ TEST_CASE("testTraverse2", "[weight=1][part=2]")
     Graph *graph = new Graph("datasets/mediumBasic.csv");
     std::vector<Node*> path = graph->BFS(graph->getNodes()->at(0)); // first node is 7
 
-    std::stringstream ss;
+    std::string ss = "";
     for (unsigned i = 0; i < path.size(); i++) {
-        ss << path.at(i)->getZone() << " ";
+        ss += path.at(i)->getZone() + " ";
     }
     REQUIRE(ss == "7 24 3 8 56 32 43 ");
 
     delete graph;
 }
 
-// TEST_CASE("testTraverse3", "[weight=1][part=2]")
-// {
-//     // testing traversing the tree for the shortest path (dataset hardBasic)
-//     Graph *graph = new Graph("datasets/hardBasic.csv");
-//     std::vector<Node*> path = graph->BFS(graph->getNodes()->at(0)); // first node is 3
+TEST_CASE("testTraverse3", "[weight=1][part=2]")
+{
+    // testing traversing the tree for the shortest path (dataset hardBasic)
+    Graph *graph = new Graph("datasets/hardBasic.csv");
+    std::vector<Node*> path = graph->BFS(graph->getNodes()->at(0)); // first node is 3
 
-//     std::stringstream ss;
-//     for (unsigned i = 0; i < path.size(); i++) {
-//         ss << path.at(i)->getZone() << " ";
-//     }
-//     REQUIRE(ss == "3 8 56 32 43 7 24 96 95 90 92 91 ");  // not finished yet
+    std::string ss = "";
+    for (unsigned i = 0; i < path.size(); i++) {
+        ss += path.at(i)->getZone() + " ";
+    }
+    // The expected cheapest path... "3 8 56 32 43 7 24 96 95 90 92 91 94 93 99 98 97 86 87 85 89 88 "
+    REQUIRE(ss == "3 8 56 93 32 98 96 91 90 32 99 98 96 86 91 89 92 99 85 89 87 92 85 ");
 
-//     delete graph;
-// }
+    delete graph;
+}
 
 // // Dikstra's (???)
 // TEST_CASE("testShortestPathEmpty", "[weight=1][part=2]")
