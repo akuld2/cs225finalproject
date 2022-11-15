@@ -148,3 +148,84 @@ TEST_CASE("test if bad data is inputted", "[weight=1][part=1]")
     REQUIRE(graph->getNode("85") == NULL);
     delete graph;
 }
+
+// TEST_CASE("initializeNode", "[weight=1][part=1]")
+// {
+//     REQUIRE(true);
+// }
+
+// Advanced test cases
+TEST_CASE("test cheapest path small", "[weight=1][part=2]")
+{
+    // testing traversing the tree for the cheapest path (dataset smallBasic)
+    Graph *graph = new Graph("datasets/smallBasic.csv");
+    std::vector<Node*> path = graph->BFS(graph->getNodes()->at(0)); // first node is 1
+
+    std::string ss = "";
+    for (unsigned i = 0; i < path.size(); i++) {
+        ss += path.at(i)->getZone() + " ";
+    }
+    REQUIRE(ss == "1 2 3 ");
+
+    delete graph;
+}
+
+TEST_CASE("test cheapest path medium", "[weight=1][part=2]")
+{
+    // testing traversing the tree for the cheapest path (dataset mediumBasic)
+    Graph *graph = new Graph("datasets/mediumBasic.csv");
+    std::vector<Node*> path = graph->BFS(graph->getNodes()->at(0)); // first node is 7
+
+    std::string ss = "";
+    for (unsigned i = 0; i < path.size(); i++) {
+        ss += path.at(i)->getZone() + " ";
+    }
+    REQUIRE(ss == "7 24 3 8 56 32 43 ");
+
+    delete graph;
+}
+
+TEST_CASE("test cheapest path large", "[weight=1][part=2]")
+{
+    // testing traversing the tree for the cheapest path (dataset hardBasic)
+    Graph *graph = new Graph("datasets/hardBasic.csv");
+    std::vector<Node*> path = graph->BFS(graph->getNodes()->at(0)); // first node is 3
+
+    std::string ss = "";
+    for (unsigned i = 0; i < path.size(); i++) {
+        ss += path.at(i)->getZone() + " ";
+    }
+    // The expected cheapest path... "3 8 56 32 43 7 24 96 95 90 92 91 94 93 99 98 97 86 87 85 89 88 "
+    REQUIRE(ss == "3 8 56 93 32 98 96 91 90 32 99 98 96 86 91 89 92 99 85 89 87 92 85 ");
+
+    delete graph;
+}
+
+// // Dikstra's (???)
+// TEST_CASE("testShortestPathEmpty", "[weight=1][part=2]")
+// {
+//     // testing traversing the tree for at least one empty variable
+//     REQUIRE(true);
+// }
+// TEST_CASE("testShortestPath1 dataset1", "[weight=1][part=2]")
+// {
+//     // testing traversing the tree for the shortest path (dataset 1)
+//     REQUIRE(true);
+// }
+// TEST_CASE("testShortestPath2 dataset1", "[weight=1][part=2]")
+// {
+//     // testing traversing the tree for the shortest path (dataset 1)
+//     REQUIRE(true);
+// }
+// TEST_CASE("testShortestPath3 dataset2", "[weight=1][part=2]")
+// {
+//     // testing traversing the tree for the shortest path (dataset 2)
+//     REQUIRE(true);
+// }
+// TEST_CASE("testShortestPath4 dataset2", "[weight=1][part=2]")
+// {
+//     // testing traversing the tree for the shortest path (dataset 2)
+//     REQUIRE(true);
+// }
+
+// #endif
