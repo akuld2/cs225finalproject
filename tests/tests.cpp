@@ -14,7 +14,9 @@
 
 using namespace std;
 
-Graph createGraph1() {
+
+// Old Dijkstra tests
+Graph prelimTestCase() {
     // Below created 5 nodes and edges are not defined fully (eveything is in default vars) 
     // (do we need setters for the fairs, miles, and times ??)
     Node* node1 = new Node("1");
@@ -42,32 +44,77 @@ Graph createGraph1() {
     return Graph(vect);
 }
 
-// Basic test cases
-TEST_CASE("initializeGraph1", "[weight=1][part=1]") {
-    // initialize and validate creating the graph with 5 test values
-    Graph graph = createGraph1();
+TEST_CASE("Test Find Path Lengths", "[weight=1][part=2]") {
+    Graph graph = prelimTestCase();
     REQUIRE(!(graph.getNodes()->empty()));
-}
-
-TEST_CASE("testGraph1", "[weight=1][part=2]") {
-    Graph graph = createGraph1();
     REQUIRE(graph.getNode("1") != nullptr);
     REQUIRE(graph.getNode("2") != nullptr);
     auto distances = graph.findPathLengths(graph.getNode("1"), 1);
     REQUIRE(!distances.empty());
-    /*std::cout << "test1" << std::endl;
-
-    for (unsigned int i = 0; i < distances.size(); i++) {
-        std::cout << i << " " << distances[i].second << std::endl;
-    }
-    
-    std::cout << "test2" << std::endl;*/
 
     REQUIRE(graph.findShortestPath(graph.getNode("1"), graph.getNode("2"), 1) == 1.0);
     REQUIRE(graph.findShortestPath(graph.getNode("1"), graph.getNode("3"), 1) == 3.0);
     REQUIRE(graph.findShortestPath(graph.getNode("1"), graph.getNode("4"), 1) == 6.0);
     REQUIRE(graph.findShortestPath(graph.getNode("1"), graph.getNode("5"), 1) == 5.0);
 }
+
+TEST_CASE("Dijkstra initialize", "[weight=1][part=2]") {
+    Graph* graph = new Graph("datasets/smallBasic.csv");
+    REQUIRE(!(graph->getNodes()->empty()));
+    REQUIRE(graph->getNode("1") != nullptr);
+    REQUIRE(graph->getNode("2") != nullptr);
+    REQUIRE(graph->getNode("3") != nullptr);
+
+    auto distances = graph->findPathLengths(graph->getNode("1"), 0);
+    REQUIRE(!distances.empty());
+}
+
+// Metric is 0 for fare (cost), 1 for time, and 2 for miles (length)
+TEST_CASE("Dijkstra small basic test", "[weight=1][part=2]") {
+    Graph* graph = new Graph("datasets/smallBasic.csv");
+
+    REQUIRE(graph->findShortestPath(graph->getNode("1"), graph->getNode("1"), 0) == 0.0);
+    REQUIRE(graph->findShortestPath(graph->getNode("1"), graph->getNode("2"), 0) == 3.50);
+    REQUIRE(graph->findShortestPath(graph->getNode("1"), graph->getNode("3"), 0) == 5.75);
+
+    REQUIRE(graph->findShortestPath(graph->getNode("2"), graph->getNode("1"), 0) == 14.0);
+    REQUIRE(graph->findShortestPath(graph->getNode("2"), graph->getNode("2"), 0) == 0.0);
+    REQUIRE(graph->findShortestPath(graph->getNode("2"), graph->getNode("3"), 0) == 2.25);
+
+    REQUIRE(graph->findShortestPath(graph->getNode("3"), graph->getNode("1"), 0) == 11.75);
+    REQUIRE(graph->findShortestPath(graph->getNode("3"), graph->getNode("2"), 0) == 15.25);
+    REQUIRE(graph->findShortestPath(graph->getNode("3"), graph->getNode("3"), 0) == 0.0); 
+
+
+    REQUIRE(graph->findShortestPath(graph->getNode("1"), graph->getNode("1"), 1) == 0.0);
+    REQUIRE(graph->findShortestPath(graph->getNode("1"), graph->getNode("2"), 1) == 456.0);
+    REQUIRE(graph->findShortestPath(graph->getNode("1"), graph->getNode("3"), 1) == 1245.0);
+
+    REQUIRE(graph->findShortestPath(graph->getNode("2"), graph->getNode("1"), 1) == 1900.0);
+    REQUIRE(graph->findShortestPath(graph->getNode("2"), graph->getNode("2"), 1) == 0.0);
+    REQUIRE(graph->findShortestPath(graph->getNode("2"), graph->getNode("3"), 1) == 789.0);
+
+    REQUIRE(graph->findShortestPath(graph->getNode("3"), graph->getNode("1"), 1) == 1111.0);
+    REQUIRE(graph->findShortestPath(graph->getNode("3"), graph->getNode("2"), 1) == 1567.0);
+    REQUIRE(graph->findShortestPath(graph->getNode("3"), graph->getNode("3"), 1) == 0.0);
+
+
+    REQUIRE(graph->findShortestPath(graph->getNode("1"), graph->getNode("1"), 2) == 0.0);
+    REQUIRE(graph->findShortestPath(graph->getNode("1"), graph->getNode("2"), 2) == 2.2);
+    REQUIRE(graph->findShortestPath(graph->getNode("1"), graph->getNode("3"), 2) == 2.6);
+
+    // This test is different due to floating point imprecision. All tests should be updated to be this
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("2"), graph->getNode("1"), 2) - 6.1) < 0.001);
+    REQUIRE(graph->findShortestPath(graph->getNode("2"), graph->getNode("2"), 2) == 0.0);
+    REQUIRE(graph->findShortestPath(graph->getNode("2"), graph->getNode("3"), 2) == 0.4);
+
+    REQUIRE(graph->findShortestPath(graph->getNode("3"), graph->getNode("1"), 2) == 5.7);
+    REQUIRE(graph->findShortestPath(graph->getNode("3"), graph->getNode("2"), 2) == 7.9);
+    REQUIRE(graph->findShortestPath(graph->getNode("3"), graph->getNode("3"), 2) == 0.0);
+
+    delete graph;
+}
+
 
 TEST_CASE("Test Build Graph with medium dataset", "[part=1]")
 {
