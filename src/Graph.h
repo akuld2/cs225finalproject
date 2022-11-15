@@ -50,8 +50,6 @@ class Graph
      * @return a pointer to a vector of nodes.
      */
     std::vector<Node*>* getNodes();
-      
-    Graph();
 
     Graph(std::vector<Node*> nodes);
       

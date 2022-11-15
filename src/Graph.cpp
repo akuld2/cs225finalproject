@@ -37,11 +37,9 @@ Graph::Graph(std::string filename)
     buildGraph(filename);
 }
 
-Graph::Graph(std::vector<Node*> nodes) {
+Graph::Graph(std::vector<Node*> nodes) { //TODO: delete after updating tests
     nodes_ = nodes;
 }
-
-Graph::Graph() {}
 
 Node *Graph::graphIterator(std::string zoneName)
 {

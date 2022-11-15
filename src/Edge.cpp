@@ -1,8 +1,6 @@
 #include "Edge.h"
 #include <iostream>
 
-Edge::Edge() {}
-
 Edge::Edge(double newFare, double newMiles, double newTime) {
     fare_ = newFare;
     miles_ = newMiles;
