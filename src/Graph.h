@@ -6,6 +6,7 @@
 #include <string>
 #include <algorithm>
 #include <queue>
+#include <stack>
 #include <float.h>
 #include <iostream>
 #include <cfloat>
