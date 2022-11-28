@@ -49,5 +49,6 @@ private:
     double fare_;
     double miles_;
     double time_;
+    // keeps track of the amount of edges we are averaging
     unsigned total_ = 0;
 };
