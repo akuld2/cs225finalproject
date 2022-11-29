@@ -198,7 +198,7 @@ std::vector<Node*> Graph::BFS(Node* start) {
     cheapestPath.push_back(start);
     queue.push(start);
     visitedNodes.push_back(start);
-    
+
     while (!queue.empty()) {
         Node* top = queue.front();
         queue.pop();
@@ -222,7 +222,13 @@ std::vector<Node*> Graph::BFS(Node* start) {
         } else {
             cheapestPath.push_back(top);
         }
+        if (cheapestPath.back() == cheapestPath.at(cheapestPath.size() - 2)) {
+            cheapestPath.pop_back();
+        }
     }
-    
+    // for (auto node : cheapestPath) {
+    //     std::cout << node->getZone() << ", ";
+    // }
+    // std::cout << std::endl;
     return cheapestPath;
 }
