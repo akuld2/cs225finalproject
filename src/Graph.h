@@ -116,6 +116,7 @@ class Graph
     unsigned int getSize();
 
     /**
+     * Dijkstra method
      * findPathLengths() will get all the path lengths with a certain node from the center.
      * @param start the start node
      * @param metric an integer specifying the data value that we want to create the minimum
@@ -126,15 +127,50 @@ class Graph
     std::vector<std::pair<Node*, double>> findPathLengths(Node* start, int metric);
 
     /**
+     * Dijkstra method
      * findShortestPath() uses findPathLengths() and finds the length between 2 points given a certain metric.
      * @param start the start node
      * @param end the end node
      * @param metric an integer specifying the data value that we want to create the minimum
-     * paths with. Metric is 0 for fare (cost), 1 for miles (length), and 2 for time.
+     * paths with. Metric is 0 for fare (cost), 1 for time, and 2 for miles (length)
      * @return the length from the start node to end node
      * The length from the start node to itself is 0.
      */
     double findShortestPath(Node* start, Node* end, int metric);
+
+    /**
+     * Betweenness Centrality method (more methods below as well)
+     * findShortestPath_PassByNode() uses findShortestPath() and finds the number of 
+     * shortest paths between the nodes start and end that pass-through the node given a certain metric
+     * @param start 
+     * @param node 
+     * @param end 
+     * @param metric Metric is 0 for fare (cost), 1 for time, and 2 for miles (length)
+     * @return double 
+     */
+    double findShortestPath_PassByNode(Node* start, Node* node, Node* end, int metric);
+
+    /**
+     * find all combinations or all pairs of nodes in the graph excluding the Node node
+     * sets the private variable called node_pairs
+     * @param std::vector<int> n
+     */
+    void combinations2(std::vector<Node*> n);
+
+    /**
+     * populateRelations() uses node_pairs to populate 
+     * relationships_between_nodes and relationships_between_nodes_passbynode
+     * @param node
+     */
+    void populateRelations(Node* node);
+
+    /**
+     * betweennessRatio() uses relationships to calculate each individual ratio
+     * and returns their sum
+     * @param node 
+     * @return double 
+     */
+    double betweennessRatio(Node* node, int metric);
 
   private:
     /**
@@ -159,5 +195,9 @@ class Graph
      */
     bool visited(Node* node, std::vector<Node*> vec);
     
-    std::vector<Node*> nodes_;    
+    std::vector<Node*> nodes_;
+    // below are betweenness private variables
+    std::vector<std::pair<Node*, Node*>> node_pairs;
+    std::vector<std::tuple<double, double, double>> relationships_between_nodes;
+    std::vector<std::tuple<double, double, double>> relationships_between_nodes_passbynode;
 };
