@@ -196,7 +196,7 @@ class Graph
     bool visited(Node* node, std::vector<Node*> vec);
     
     std::vector<Node*> nodes_;
-    // below are betweenness private variables
+    // private variables for the betweeness centrality algo
     std::vector<std::pair<Node*, Node*>> node_pairs;
     std::vector<std::tuple<double, double, double>> relationships_between_nodes;
     std::vector<std::tuple<double, double, double>> relationships_between_nodes_passbynode;
