@@ -139,7 +139,7 @@ class Graph
     double findShortestPath(Node* start, Node* end, int metric);
 
     /**
-     * Betweenness Centrality method (more methods below as well)
+     * Betweenness Centrality method
      * findShortestPath_PassByNode() uses findShortestPath() and finds the number of 
      * shortest paths between the nodes start and end that pass-through the node given a certain metric
      * @param start 
