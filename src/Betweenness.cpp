@@ -66,15 +66,6 @@ double Graph::betweennessRatio(Node* node, int metric) {
     for (Node* n: nodes_) {
         std::cout << n->getZone() << std::endl;
     }
-    // for (std::pair<Node*, Node*> p: node_pairs) {
-    //     std::cout << p.first->getZone() << " AND " << p.second->getZone() << std::endl;
-    // }
-    // for (std::tuple<double, double, double> t: relationships_between_nodes) {
-    //     std::cout << std::get<0>(t) << " && " << std::get<1>(t) << " && " << std::get<2>(t) << std::endl;
-    // }
-    // for (std::tuple<double, double, double> t: relationships_between_nodes_passbynode) {
-    //     std::cout << std::get<0>(t) << " &&^ " << std::get<1>(t) << " &&^ " << std::get<2>(t) << std::endl;
-    // }
     if (metric == 0) {
         for (unsigned int i = 0; i < relationships_between_nodes.size(); i++) {
             std::cout << std::get<0>(relationships_between_nodes_passbynode[i]) << std::endl;
