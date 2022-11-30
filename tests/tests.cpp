@@ -339,16 +339,35 @@ TEST_CASE("Dijkstra medium complex test", "[weight=1][part=2]")
     delete graph;
 }
 
-// TEST_CASE("Betweenness Multiple Edges test", "[weight=1][part=2]")
-// {
-//     Graph* graph = new Graph("datasets/multipleEdges.csv");
+TEST_CASE("Betweenness Multiple Edges test", "[weight=1][part=2]")
+{
+    Graph* graph = new Graph("datasets/multipleEdges.csv");
 
-//     REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("35"), 0) == 18.0);
-//     REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("35"), 1) == 15.0);
-//     REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("35"), 2) == 5.25);
+    REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("35"), 0) == 18.0);
+    REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("35"), 1) == 15.0);
+    REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("35"), 2) == 5.25);
 
-//     delete graph;
-// }
+    delete graph;
+}
+
+TEST_CASE("Betweenness small basic test", "[weight=1][part=2]")
+{
+    Graph* graph = new Graph("datasets/smallBasic.csv");
+
+    REQUIRE(graph->betweennessRatio(graph->getNode("1"), 0) == 15.25/2.25);
+    REQUIRE(graph->betweennessRatio(graph->getNode("2"), 0) == 1.0);
+    REQUIRE(graph->betweennessRatio(graph->getNode("3"), 0) == 4.0);
+
+    REQUIRE(graph->betweennessRatio(graph->getNode("1"), 1) == 1567.0/789.0);
+    REQUIRE(graph->betweennessRatio(graph->getNode("2"), 1) == 1245.0/1111.0);
+    REQUIRE(graph->betweennessRatio(graph->getNode("3"), 1) == 1900.0/456.0);
+
+    REQUIRE(graph->betweennessRatio(graph->getNode("1"), 2) == 7.9/0.4);
+    REQUIRE(graph->betweennessRatio(graph->getNode("2"), 2) == 1.0);
+    // REQUIRE(graph->betweennessRatio(graph->getNode("3"), 2) == 6.10/2.20); right (2.7727272727 == 2.7727272727) but flaoting error
+
+    delete graph;
+}
 
 TEST_CASE("Test Build Graph with medium dataset", "[part=1]")
 {

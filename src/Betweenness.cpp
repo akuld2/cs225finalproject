@@ -22,25 +22,63 @@ void Graph::combinations2(std::vector<Node*> n) {
 
 void Graph::populateRelations(Node* node) {
     combinations2(nodes_);
+    // removing any pairs in node_pairs vector that contain node
+    std::vector<int> list;
+    for (unsigned int i = 0; i < node_pairs.size(); i++) {
+        if (node_pairs[i].first == node || node_pairs[i].second == node) {
+            // node_pairs.erase(node_pairs.begin()+i);
+            list.push_back(i);
+        }
+    }
+    std::vector<std::pair<Node*, Node*>> newNodePairs;
+    unsigned int idx = 0;
+    for (unsigned int i = 0; i < node_pairs.size(); i++) {
+        if (!list.empty()) {
+            if ((int) i != list[idx]) {
+                newNodePairs.push_back(node_pairs[i]);
+            } else {
+                idx++;
+            }
+        } else {
+            return;
+        }
+    }
+    node_pairs = newNodePairs;
+    relationships_between_nodes.clear();
+    relationships_between_nodes_passbynode.clear();
     for (std::pair<Node*, Node*> p: node_pairs) {
-        double relationFare = findShortestPath(p.first, p.second, 0);
-        double relationTime = findShortestPath(p.first, p.second, 1);
-        double relationMile = findShortestPath(p.first, p.second, 2);
+        double relationFare = std::min(findShortestPath(p.first, p.second, 0),findShortestPath(p.second, p.first, 0));
+        double relationTime = std::min(findShortestPath(p.first, p.second, 1),findShortestPath(p.second, p.first, 1));
+        double relationMile = std::min(findShortestPath(p.first, p.second, 2),findShortestPath(p.second, p.first, 2));
         std::tuple<double, double, double> tupleRelations(relationFare, relationTime, relationMile);
         relationships_between_nodes.push_back(tupleRelations);
 
-        double relationFare_withNode = findShortestPath_PassByNode(p.first, node, p.second, 0);
-        double relationTime_withNode = findShortestPath_PassByNode(p.first, node, p.second, 1);
-        double relationMile_withNode = findShortestPath_PassByNode(p.first, node, p.second, 2);
-        std::tuple<double, double, double> tupleRelations_withNode(relationFare, relationTime, relationMile);
+        double relationFare_withNode = std::min(findShortestPath_PassByNode(p.first, node, p.second, 0), findShortestPath_PassByNode(p.second, node, p.first, 0));
+        double relationTime_withNode = std::min(findShortestPath_PassByNode(p.first, node, p.second, 1), findShortestPath_PassByNode(p.second, node, p.first, 1));
+        double relationMile_withNode = std::min(findShortestPath_PassByNode(p.first, node, p.second, 2), findShortestPath_PassByNode(p.second, node, p.first, 2));
+        std::tuple<double, double, double> tupleRelations_withNode(relationFare_withNode, relationTime_withNode, relationMile_withNode);
         relationships_between_nodes_passbynode.push_back(tupleRelations_withNode);
     }
 }
 double Graph::betweennessRatio(Node* node, int metric) {
     populateRelations(node);
     double total = 0;
+    for (Node* n: nodes_) {
+        std::cout << n->getZone() << std::endl;
+    }
+    // for (std::pair<Node*, Node*> p: node_pairs) {
+    //     std::cout << p.first->getZone() << " AND " << p.second->getZone() << std::endl;
+    // }
+    // for (std::tuple<double, double, double> t: relationships_between_nodes) {
+    //     std::cout << std::get<0>(t) << " && " << std::get<1>(t) << " && " << std::get<2>(t) << std::endl;
+    // }
+    // for (std::tuple<double, double, double> t: relationships_between_nodes_passbynode) {
+    //     std::cout << std::get<0>(t) << " &&^ " << std::get<1>(t) << " &&^ " << std::get<2>(t) << std::endl;
+    // }
     if (metric == 0) {
         for (unsigned int i = 0; i < relationships_between_nodes.size(); i++) {
+            std::cout << std::get<0>(relationships_between_nodes_passbynode[i]) << std::endl;
+            std::cout << std::get<0>(relationships_between_nodes[i]) << std::endl;
             total += std::get<0>(relationships_between_nodes_passbynode[i]) / std::get<0>(relationships_between_nodes[i]);
         }
     } else if (metric == 1) {
