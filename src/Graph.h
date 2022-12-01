@@ -1,3 +1,4 @@
+
 #pragma once
 
 #include "Node.h"
@@ -139,36 +140,38 @@ class Graph
     double findShortestPath(Node* start, Node* end, int metric);
 
     /**
-     * Betweenness Centrality method (more methods below as well)
-     * findShortestPath_PassByNode() uses findShortestPath() and finds the number of 
+     * Betweenness Centrality method
+     * findShortestPathPassByNode() uses findShortestPath() and finds the number of 
      * shortest paths between the nodes start and end that pass-through the node given a certain metric
-     * @param start 
-     * @param node 
-     * @param end 
+     * @param start the start node
+     * @param node the node that is to be centered between start and end nodes for betweenness 
+     * @param end the end node
      * @param metric Metric is 0 for fare (cost), 1 for time, and 2 for miles (length)
-     * @return double 
+     * @return double the length from the start node to end node that passes through the node
      */
-    double findShortestPath_PassByNode(Node* start, Node* node, Node* end, int metric);
+    double findShortestPathPassByNode(Node* start, Node* node, Node* end, int metric);
 
     /**
-     * find all combinations or all pairs of nodes in the graph excluding the Node node
+     * allPairs() finds all combinations or all pairs of nodes in the graph excluding the Node node
      * sets the private variable called node_pairs
-     * @param std::vector<int> n
+     * @param std::vector<int> n total number of nodes in the graph
      */
-    void combinations2(std::vector<Node*> n);
+    void allPairs(std::vector<Node*> n);
 
     /**
      * populateRelations() uses node_pairs to populate 
      * relationships_between_nodes and relationships_between_nodes_passbynode
-     * @param node
+     * @param node that is to be centered between start and end nodes for betweenness
      */
     void populateRelations(Node* node);
 
     /**
      * betweennessRatio() uses relationships to calculate each individual ratio
      * and returns their sum
-     * @param node 
-     * @return double 
+     * @param node that is to be centered between start and end nodes for betweenness
+     * @param int metric an integer specifying the data value that we want to create the minimum
+     * paths with. Metric is 0 for fare (cost), 1 for time, and 2 for miles (length)
+     * @return double the sum of individual relationships and realtionshipsPassByNode
      */
     double betweennessRatio(Node* node, int metric);
 
@@ -196,8 +199,9 @@ class Graph
     bool visited(Node* node, std::vector<Node*> vec);
     
     std::vector<Node*> nodes_;
-    // below are betweenness private variables
+    // private variables for the betweeness centrality algo
     std::vector<std::pair<Node*, Node*>> node_pairs;
-    std::vector<std::tuple<double, double, double>> relationships_between_nodes;
-    std::vector<std::tuple<double, double, double>> relationships_between_nodes_passbynode;
+    // relationships between nodes
+    std::vector<std::tuple<double, double, double>> relationships;
+    std::vector<std::tuple<double, double, double>> relationshipsPassbynode;
 };
