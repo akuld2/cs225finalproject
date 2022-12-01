@@ -204,4 +204,8 @@ class Graph
     // relationships between nodes
     std::vector<std::tuple<double, double, double>> relationships;
     std::vector<std::tuple<double, double, double>> relationshipsPassbynode;
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> ec3e3db737427a28d284e3e8a023d314561fa95c
