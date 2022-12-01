@@ -16,6 +16,7 @@ std::vector<Node*>* Graph::getNodes() {
     return &nodes_;
 }
 
+
 unsigned int Graph::getSize() {
     return nodes_.size();
 }
@@ -181,9 +182,6 @@ std::vector<Graph::TaxiTripDetails> Graph::readCSV(std::string filename)
 
 
 
-
-
-
 std::vector<std::pair<Node*, double>> Graph::findPathLengths(Node* start, int metric) {
     std::vector<std::pair<Node*, double>> distances = 
         std::vector<std::pair<Node*, double>>(nodes_.size());
@@ -280,6 +278,21 @@ void Graph::printGraph() const
         }
         std::cout << "----------" << std::endl;
     }
+}
+
+void Graph::printNodes() const 
+{
+    for (auto node: nodes_) {
+        std::cout << node->getZone() << " ";
+    }
+}
+
+std::vector<std::string> Graph::getNodeNames() {
+    std::vector<std::string> output;
+    for (auto node: nodes_) {
+        output.push_back(node->getZone());
+    }
+    return output;
 }
 
 bool Graph::visited(Node* node, std::vector<Node*> vec) {
