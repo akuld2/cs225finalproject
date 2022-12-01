@@ -1,21 +1,23 @@
-# CS225 Final Project: Traveling Chicago By Taxi
+# CS225 Final Project: The Chicago Taxi Trip Navigator
 To the taxi tourists of Chicago,
 
 We know that navigating can be daunting.  There are so many options to consider and places to visit.  We wanted to create a high-level informative service that would help a taxi user navigate Chicago.  Some leading questions we want to answer include…
-- How to navigate from one community to another with the least amount of money
-- How to visit every community with the least amount of money given a start community
+- How to navigate from zone A to zone B with the least amount of money?
+- How to navigate from zone A to zone B with the least amount of time?
+- How to navigate from zone A to zone B with the least amount of miles?
+- Given a starting zone, which other zones can you travel to?
+- Which zones are visited the most?
 
 This is a general search tool for a taxi tourist to filter the way they want to travel via taxi in Chicago.
 
-To answer the questions above, we will be using the data from the Chicago Data Portal Transportation, which contains information on a taxi, travel time, travel distance, to and from location, the fare, and the taxi company.  We will use this dataset to find the cheapest way to travel between communities and the cheapest way to visit every community, which will help a user identify ways to travel around Chicago with the least amount of money.
+To answer the questions above, we will be using the data from the Chicago Data Portal Transportation, which contains information on a taxi, travel time, travel distance, to and from location, the fare, and the taxi company.  We will use this dataset to find the cheapest way to travel between zones and the cheapest way to visit every zone, which will help a user identify ways to travel around Chicago with the least amount of money.
 
-If time permits, we would also like to answer these questions…
-- How to navigate from one community to another with the least travel time
-- How to navigate from one community to another with the least amount of miles
-- How to visit every community with the least travel time given a start community
-- With a starting community, how many communities can you visit with a certain amount of money
+When answering the questions above we will use the following algorithms: 
+- BFS.  We plan to use the BFS traversal for finding out which other zones you can travel to given a starting zone.  Essentially will help identify connected zones.
+- Dijkstra's Algorithm.  We plan to use Dijkstra’s Algorithm to find the cheapest path, the quickest path, or the path with the least amount of miles between two different zones.
+- Betweeness Centrality Alogrithm. We plan to use the Betweenness Centrality Algorithm to find which zones are center points within Chicago.
 
-If we answer all the questions listed above, a user can find ways to travel between two communities or all communities when using fare, time, or miles as the variable to compare.
+
 
 ## Data
 We are using the data from the [Chicago Data Portal of Transportation](https://data.cityofchicago.org/Transportation/Taxi-Trips/wrvz-psew/data).  We will be focusing on the following columns
@@ -25,13 +27,21 @@ We are using the data from the [Chicago Data Portal of Transportation](https://d
 - Trip Miles
 - Fare
 
-## Development Setup
-TODO: should include the following
-- how to install and run the project
-- what input a user should put in
+## Deliverables
+- All major files that contain our functions and classes are in the [/src](https://github.com/akuld2/cs225finalproject/src)
+- The datasets are stored as csv files in [/datasets](https://github.com/akuld2/cs225finalproject/tree/main/datasets)
+- The tests are in [/tests](https://github.com/akuld2/cs225finalproject/tree/main/tests)
+- The Project Report, Development Logs, and other documents are in [/documents](https://github.com/akuld2/cs225finalproject/tree/main/documents)
 
-## Tests
-TODO. Include how to run and what is included in our tests
+
+## Development Setup
+Make sure you are running the program in Docker.
+
+### Execultables
+To run the Chicago Taxi Trip Navigator, run ./run.sh in the root directory.  The terminal will give you instructions on what to input.  Here is what to expect...
+
+### Tests
+To run the test cases for the Chicago Taxi Trip Navigator, run ./tests.sh in the root directory.  We are using several different sized datasets that are located in [/datasets](https://github.com/akuld2/cs225finalproject/tree/main/datasets).  Our test cases focus on small to medium sized graphs when creating the graph, using BFS, using DIjkstra's, and using the Betweeness Centrality Algorithm.
 
 ## Contributers
 Nisha Prasad (nishap4)

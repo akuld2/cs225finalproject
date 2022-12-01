@@ -7,10 +7,10 @@
 int main()
 {
     std::cout << "hello world" << std::endl;
-    Graph* tmpGraph = new Graph("datasets/testDataSet.csv");
+    Graph *tmpGraph = new Graph("datasets/Taxi_Trips.csv");
     tmpGraph->printGraph();
-    std::cout << "\n\n" << std::endl;
+    std::cout << "\n\n"
+              << std::endl;
     tmpGraph->BFS(tmpGraph->getNodes()->at(0));
     delete tmpGraph;
-   
 }
