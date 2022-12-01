@@ -294,7 +294,6 @@ bool Graph::visited(Node* node, std::vector<Node*> vec) {
 std::vector<Node*> Graph::BFS(Node* start) {
     std::vector<Node*> visitedNodes; 
     std::queue<Node*> queue;
-    // std::stack<Node*> queue;
     std::vector<Node*> order;
 
     queue.push(start);
@@ -302,16 +301,13 @@ std::vector<Node*> Graph::BFS(Node* start) {
 
     while (!queue.empty()) {
         Node* top = queue.front();
-        // Node* top = queue.top();
         queue.pop();
         order.push_back(top);
-        std::cout << "top: " << top->getZone() <<std::endl;
 
         std::map<Node *, Edge *>::iterator it;
         
         for (it = top->getNeighbors()->begin(); it != top->getNeighbors()->end(); it++) {
             if (!visited(it->first, visitedNodes)) {
-                std::cout << "      add: " << it->first->getZone() <<std::endl;
                 queue.push(it->first);
                 visitedNodes.push_back(it->first);
             }
