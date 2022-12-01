@@ -1,16 +1,4 @@
 #include "Graph.h"
-/*
-#include <algorithm>
-#include <queue>
-#include <iostream>
-#include <cfloat>
-#include <string>
-#include <fstream>
-#include <vector>
-#include <utility>
-#include <stdexcept>
-#include <sstream>
-*/
 
 std::vector<Node*>* Graph::getNodes() {
     return &nodes_;
@@ -174,13 +162,10 @@ std::vector<Graph::TaxiTripDetails> Graph::readCSV(std::string filename)
         }
     }
     
-
     // Close file
     myFile.close();
     return result;
 }
-
-
 
 std::vector<std::pair<Node*, double>> Graph::findPathLengths(Node* start, int metric) {
     std::vector<std::pair<Node*, double>> distances = 
