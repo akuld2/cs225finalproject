@@ -120,7 +120,7 @@ class Graph
      * findPathLengths() will get all the path lengths with a certain node from the center.
      * @param start the start node
      * @param metric an integer specifying the data value that we want to create the minimum
-     * paths with. Metric is 0 for fare (cost), 1 for miles (length), and 2 for time.
+     * paths with. Metric is 0 for fare (cost), 1 for time, and 2 for miles (length)
      * @return a vector of pairs of nodes and the length from the start node.
      * The length from the start node to itself is 0.
      */
@@ -132,7 +132,7 @@ class Graph
      * @param end the end node
      * @param metric an integer specifying the data value that we want to create the minimum
      * paths with. Metric is 0 for fare (cost), 1 for miles (length), and 2 for time.
-     * @return a vector of pairs of nodes and the length from the start node.
+     * @return the length from the start node to end node
      * The length from the start node to itself is 0.
      */
     double findShortestPath(Node* start, Node* end, int metric);
