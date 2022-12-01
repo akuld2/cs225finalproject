@@ -89,6 +89,5 @@ int main()
         std::cout << std::endl;
     }
 
-    // Comment here so I can commit goddamnit
     delete taxiGraph;
 }
