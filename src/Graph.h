@@ -118,7 +118,7 @@ class Graph
 
     /**
      * Dijkstra method
-     * findPathLengths() will get all the path lengths with a certain node from the center.
+     * findPathLengths() will get all the path lengths from start to any other node.
      * @param start the start node
      * @param metric an integer specifying the data value that we want to create the minimum
      * paths with. Metric is 0 for fare (cost), 1 for time, and 2 for miles (length)
@@ -183,7 +183,7 @@ class Graph
      * @return std::string Node that is the busiest route given the metric
      */
     std::string betweennessCentrality(int metric);
-  
+
   private:
     /**
      * buildGraph() is a helper function to build a graph from a CSV file.
