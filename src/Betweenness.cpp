@@ -77,3 +77,37 @@ double Graph::betweennessRatio(Node* node, int metric) {
     }
     return total;
 }
+
+std::string Graph::betweennessCentrality(int metric) {
+    std::vector<double> busiestRoute;
+    std::map<double, std::string> centralityMap;
+    if (metric == 0) {
+        for (unsigned int i = 0; i < nodes_.size(); i++) {
+            double total = betweennessRatio(nodes_[i], 0);
+            std::string zone = nodes_[i]->getZone();
+            centralityMap.insert(std::make_pair(total, zone));
+            busiestRoute.push_back(total);
+        }
+    } else if (metric == 1) {
+        for (unsigned int i = 0; i < nodes_.size(); i++) {
+            double total = betweennessRatio(nodes_[i], 1);
+            std::string zone = nodes_[i]->getZone();
+            centralityMap.insert(std::make_pair(total, zone));
+            busiestRoute.push_back(total);
+        }
+    } else if (metric == 2) {
+        for (unsigned int i = 0; i < nodes_.size(); i++) {
+            double total = betweennessRatio(nodes_[i], 2);
+            std::string zone = nodes_[i]->getZone();
+            centralityMap.insert(std::make_pair(total, zone));
+            busiestRoute.push_back(total);
+        }
+    }
+    double max = busiestRoute[0];
+    for (unsigned i = 0; i < busiestRoute.size(); i++) {
+        if (max < busiestRoute[i]) {
+            max = busiestRoute[i];
+        }
+    }
+    return centralityMap[max];
+}

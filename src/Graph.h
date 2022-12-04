@@ -175,6 +175,15 @@ class Graph
      */
     double betweennessRatio(Node* node, int metric);
 
+    /**
+     * betweennessCentrality() uses the passed in metric to determine the busiest route or the central hub
+     * given fare, time or mile 
+     * @param int metric an integer specifying the data value that we want to create the minimum
+     * paths with. Metric is 0 for fare (cost), 1 for time, and 2 for miles (length) 
+     * @return std::string Node that is the busiest route given the metric
+     */
+    std::string betweennessCentrality(int metric);
+  
   private:
     /**
      * buildGraph() is a helper function to build a graph from a CSV file.
@@ -204,8 +213,4 @@ class Graph
     // relationships between nodes
     std::vector<std::tuple<double, double, double>> relationships;
     std::vector<std::tuple<double, double, double>> relationshipsPassbynode;
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> ec3e3db737427a28d284e3e8a023d314561fa95c
