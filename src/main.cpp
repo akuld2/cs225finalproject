@@ -16,8 +16,8 @@ int main()
     while (quitSelected == false) {
         std::cout << "Please select an Option: " << std::endl;
         std::cout << "1.) Navigate Between Zones" << std::endl;
-        std::cout << "2.) Navigate to All Zones" << std::endl;
-        std::cout << "3.) Find the Most Busy Zone" << std::endl;
+        std::cout << "2.) Navigate to Connected Zones" << std::endl;
+        std::cout << "3.) Find The Busiest Zone" << std::endl;
         std::cout << "4.) Quit" << std::endl;
         std::cout << std::endl;
 
@@ -79,6 +79,8 @@ int main()
             std::cout << "You have selected to find the most busy zone." << std::endl;
             std::cout << "The busiest zone is " << std::endl;
             // Call Betweenness Here
+            // @todo need to be descriptive on what is cout
+            // @todo need to call betweeness for each metric
         } else if (choice == 4) {
             std::cout << "Thank you for your patronage. Good day." << std::endl;
             quitSelected = true;

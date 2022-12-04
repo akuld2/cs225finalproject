@@ -17,7 +17,7 @@ To answer the questions above, we will be using the data from the Chicago Data P
 When answering the questions above we will use the following algorithms: 
 - BFS.  We plan to use the BFS traversal for finding out which other zones you can travel to given a starting zone.  Essentially will help identify connected zones.
 - Dijkstra's Algorithm.  We plan to use Dijkstra’s Algorithm to find the cheapest path, the quickest path, or the path with the least amount of miles between two different zones.
-- Betweeness Centrality Alogrithm. We plan to use the Betweenness Centrality Algorithm to find which zones are center points within Chicago.
+- Betweeness Centrality Alogrithm. We plan to use the Betweenness Centrality Algorithm to find which zones are the busiest within Chicago.
 
 
 ## Dataset Acquisition and Processing
