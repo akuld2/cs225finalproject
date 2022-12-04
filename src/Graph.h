@@ -7,6 +7,7 @@
 #include <string>
 #include <algorithm>
 #include <queue>
+#include <stack>
 #include <float.h>
 #include <iostream>
 #include <cfloat>
@@ -52,6 +53,8 @@ class Graph
      */
     std::vector<Node*>* getNodes();
 
+    std::vector<std::string> getNodeNames();
+
     Graph(std::vector<Node*> nodes);
       
     /**
@@ -62,9 +65,14 @@ class Graph
     Node* getNode(std::string zone);
 
     /**
-     * printGraph() will print the starting location, and then under it all of the ending zones
+     * printGraph() will print each starting location, and then under it all of the neighboring zones
      */
     void printGraph() const;
+
+    /**
+     * printNodes() will print each zone in the graph
+     */
+    void printNodes() const;
 
     /**
      * getNode() will retrieve a reference to a node and its content.

@@ -449,13 +449,9 @@ TEST_CASE("test if bad data is inputted", "[weight=1][part=1]")
     delete graph;
 }
 
-// TEST_CASE("initializeNode", "[weight=1][part=1]")
-// {
-//     REQUIRE(true);
-// }
 
 // Advanced test cases
-TEST_CASE("test cheapest path small", "[weight=1][part=2]")
+TEST_CASE("test BFS path small", "[weight=1][part=2]")
 {
     // testing traversing the tree for the cheapest path (dataset smallBasic)
     Graph *graph = new Graph("datasets/smallBasic.csv");
@@ -470,7 +466,7 @@ TEST_CASE("test cheapest path small", "[weight=1][part=2]")
     delete graph;
 }
 
-TEST_CASE("test cheapest path medium", "[weight=1][part=2]")
+TEST_CASE("test BFS path medium", "[weight=1][part=2]")
 {
     // testing traversing the tree for the cheapest path (dataset mediumBasic)
     Graph *graph = new Graph("datasets/mediumBasic.csv");
@@ -480,7 +476,8 @@ TEST_CASE("test cheapest path medium", "[weight=1][part=2]")
     for (unsigned i = 0; i < path.size(); i++) {
         ss += path.at(i)->getZone() + " ";
     }
-    REQUIRE(ss == "7 24 3 8 56 32 43 ");
+    bool isCorrect = ((ss == "7 24 3 8 56 32 43 ")||(ss == "7 24 3 8 56 43 32 "));
+    REQUIRE(isCorrect);
 
     delete graph;
 }

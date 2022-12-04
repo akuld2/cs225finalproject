@@ -4,6 +4,7 @@ std::vector<Node*>* Graph::getNodes() {
     return &nodes_;
 }
 
+
 unsigned int Graph::getSize() {
     return nodes_.size();
 }
@@ -181,6 +182,21 @@ void Graph::printGraph() const
     }
 }
 
+void Graph::printNodes() const 
+{
+    for (auto node: nodes_) {
+        std::cout << node->getZone() << " ";
+    }
+}
+
+std::vector<std::string> Graph::getNodeNames() {
+    std::vector<std::string> output;
+    for (auto node: nodes_) {
+        output.push_back(node->getZone());
+    }
+    return output;
+}
+
 bool Graph::visited(Node* node, std::vector<Node*> vec) {
     for (unsigned i = 0; i < vec.size(); ++i) {
         if (vec.at(i)->getZone() == node->getZone()) {
@@ -191,44 +207,26 @@ bool Graph::visited(Node* node, std::vector<Node*> vec) {
 }
 
 std::vector<Node*> Graph::BFS(Node* start) {
-    std::vector<Node*> cheapestPath;
     std::vector<Node*> visitedNodes; 
     std::queue<Node*> queue;
+    std::vector<Node*> order;
 
-    cheapestPath.push_back(start);
     queue.push(start);
     visitedNodes.push_back(start);
 
     while (!queue.empty()) {
         Node* top = queue.front();
         queue.pop();
+        order.push_back(top);
 
         std::map<Node *, Edge *>::iterator it;
-        Node* minNode = NULL;
-        double minFare = DBL_MAX;
         
         for (it = top->getNeighbors()->begin(); it != top->getNeighbors()->end(); it++) {
             if (!visited(it->first, visitedNodes)) {
                 queue.push(it->first);
                 visitedNodes.push_back(it->first);
-                if (it->second->getFare() < minFare) {
-                    minFare = it->second->getFare();
-                    minNode = it->first;
-                }
             }
         }
-        if (minNode != NULL) {
-            cheapestPath.push_back(minNode);
-        } else {
-            cheapestPath.push_back(top);
-        }
-        if (cheapestPath.back() == cheapestPath.at(cheapestPath.size() - 2)) {
-            cheapestPath.pop_back();
-        }
     }
-    // for (auto node : cheapestPath) {
-    //     std::cout << node->getZone() << ", ";
-    // }
-    // std::cout << std::endl;
-    return cheapestPath;
+    return order;
 }

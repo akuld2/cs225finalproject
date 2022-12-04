@@ -11,6 +11,8 @@ class Node
     Node(std::string startLocation);
 
     bool operator==(Node zone);
+    bool operator>(Node zone);
+    bool operator<(Node zone);
 
     void setNeighbor(Node* new_node, Edge* new_edge);
 

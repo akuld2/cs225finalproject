@@ -26,8 +26,18 @@ bool Node::operator==(Node zone)
     return startingLocation_ == zone.getZone();
 }
 
-void Node::setNeighbor(Node* new_node, Edge* new_edge) {
-    std::pair<Node*, Edge*> pair = std::pair<Node*, Edge*>(new_node, new_edge);
+bool Node::operator>(Node zone)
+{
+    return startingLocation_ > zone.getZone();
+};
+bool Node::operator<(Node zone)
+{
+    return startingLocation_ < zone.getZone();
+};
+
+void Node::setNeighbor(Node *new_node, Edge *new_edge)
+{
+    std::pair<Node *, Edge *> pair = std::pair<Node *, Edge *>(new_node, new_edge);
     neighbors_.insert(pair);
 }
 
@@ -60,7 +70,8 @@ bool Node::checkNeighborExists(std::string endLocation)
 
     for (it = this->getNeighbors()->begin(); it != this->getNeighbors()->end(); it++)
     {
-        if (it->first->getZone() == endLocation) {
+        if (it->first->getZone() == endLocation)
+        {
             return true;
         }
     }
@@ -73,7 +84,8 @@ std::vector<double> Node::retrieveNeighborEdgeData(std::string endLocation)
     std::vector<double> values;
     for (it = this->getNeighbors()->begin(); it != this->getNeighbors()->end(); it++)
     {
-        if (it->first->getZone() == endLocation) {
+        if (it->first->getZone() == endLocation)
+        {
             values.push_back(it->second->getFare());
             values.push_back(it->second->getTime());
             values.push_back(it->second->getMiles());
