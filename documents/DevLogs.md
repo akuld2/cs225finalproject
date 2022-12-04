@@ -82,3 +82,23 @@
 - Update read.me
 - In the documents folder, include what we discovered 
 - Potentially start the final presentation script/video
+
+## Week 4
+**Weekly Goals:**
+- Finish implementing Betweenness Centrality Algorithm 
+- Clean up the Schema 
+- Update read.me 
+- User Input 
+- Clean Up BFS 
+
+**Specific Tasks Completed (and by who):**
+- Finish implementing Betweenness Centrality Algorithm (Yesui)
+- Clean up the Schema (Megan)
+- Update read.me (Megan)
+- User Input (Nisha)
+- Clean Up BFS (Megan/Nisha)
+
+**Plans For Next Week:**
+- Betweenness Centrality Algorithm Test Cases
+- Write written report
+- Make final presentation
