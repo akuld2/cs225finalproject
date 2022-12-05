@@ -81,7 +81,7 @@ std::vector<double> Graph::get_seconds_path(std::vector<std::pair<Node*, double>
     }
     return seconds;
 }
-// the get_first_path is not needed
+
 std::vector<Node*> Graph::get_firsts_path(std::vector<std::pair<Node*, double>> distances) {
     std::vector<Node*> firsts;
     for (unsigned int i = 0; i < distances.size(); i++) {
