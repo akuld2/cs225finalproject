@@ -84,10 +84,9 @@ int main()
             }
         } else if (choice == 3) {
             std::cout << "You have selected to find the most busy zone." << std::endl;
-            std::cout << "The busiest zone is " << std::endl;
-            // @todo Call Betweenness Here
-            // @todo need to be descriptive on what is cout
-            // @todo need to call betweeness for each metric
+            std::cout << "The busiest zone is when minimizing fare is  " << taxiGraph->betweennessCentrality(0) << std::endl;
+            std::cout << "The busiest zone is when minimizing time is  " << taxiGraph->betweennessCentrality(1) << std::endl;
+            std::cout << "The busiest zone is when minimizing distance is  " << taxiGraph->betweennessCentrality(2) << std::endl;
         } else if (choice == 4) {
             std::cout << "Thank you for your patronage. Good day." << std::endl;
             quitSelected = true;
