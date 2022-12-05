@@ -42,14 +42,14 @@ Make sure you are running the program in Docker.
 ### Executables
 To run the Chicago Taxi Trip Navigator, run `./run.sh` in the root directory.  The terminal will give you instructions on what to input.  Here is what to expect...
 1. Navigate Between Zones (Dijkstra's) 
-- - Input: a `start zone` (integer), `end zone` (integer), and a `metric` (integer).  The zone has to be a zone that the is listed.  The metric a user chooses determines if they are looking for the shortest path (miles), quickest path (seconds), or cheapest path (money)
-- - Output: a vector of zones that gives the directions a user needs to take on the path and a double that describes the total amount of the metric they chose. 
+  - Input: a `start zone` (integer), `end zone` (integer), and a `metric` (integer).  The zone has to be a zone that the is listed.  The metric a user chooses determines if they are looking for the shortest path (miles), quickest path (seconds), or cheapest path (money)
+  - Output: a vector of zones that gives the directions a user needs to take on the path and a double that describes the total amount of the metric they chose. 
 2. Navigate to Connected Zones (BFS)
-- - Input: a `metric` (integer)
-- - Output: a vector of zones a user can travel when starting at that zone
+  - Input: a `metric` (integer)
+  - Output: a vector of zones a user can travel when starting at that zone
 3. Find the Busiest Zone (Betweeness Centrality Algorithm)
-- - Input: none
-- - Output: a formatted string that tells the user which is the most center node for each metric
+  - Input: none
+  - Output: a formatted string that tells the user which is the most center node for each metric
 4. Quit 
 
 ### Tests
