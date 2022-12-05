@@ -39,7 +39,7 @@ We are using the data from the [Chicago Data Portal of Transportation](https://d
 ## Development Setup
 Make sure you are running the program in Docker.
 
-### Execultables
+### Executables
 To run the Chicago Taxi Trip Navigator, run `./run.sh` in the root directory.  The terminal will give you instructions on what to input.  Here is what to expect...
 1. Navigate Between Zones (Dijkstra's) 
 - - Input: a `start zone` (integer), `end zone` (integer), and a `metric` (integer).  The zone has to be a zone that the is listed.  The metric a user chooses determines if they are looking for the shortest path (miles), quickest path (seconds), or cheapest path (money)
