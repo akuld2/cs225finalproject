@@ -192,6 +192,14 @@ class Graph
      */
     std::string betweennessCentrality(int metric);
 
+
+    /**
+     * returns a std::vector<double> that is the path of nodes from the start node to the end
+     * @param distances 
+     * @return std::vector<double> that is the path of nodes from the start node to the end
+     */
+    std::vector<double> getShortestPath(Node* start, Node* end, int metric);
+
   private:
     /**
      * buildGraph() is a helper function to build a graph from a CSV file.

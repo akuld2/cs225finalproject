@@ -61,7 +61,6 @@ double Graph::findShortestPath(Node* start, Node* end, int metric) {
     return distances[index].second;
 }
 
-
 int Graph::get_idx_path(std::vector<std::pair<Node*, double>> distances, Node* destination) {
     std::vector<Node*> firsts;
     for (unsigned int i = 0; i < distances.size(); i++) {

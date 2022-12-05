@@ -364,7 +364,7 @@ TEST_CASE("Betweenness small basic test", "[weight=1][part=2]")
 
     REQUIRE(graph->betweennessRatio(graph->getNode("1"), 2) == 7.9/0.4);
     REQUIRE(graph->betweennessRatio(graph->getNode("2"), 2) == 1.0);
-    // REQUIRE(graph->betweennessRatio(graph->getNode("3"), 2) == 6.10/2.20); right (2.7727272727 == 2.7727272727) but flaoting error
+    REQUIRE(std::abs(graph->betweennessRatio(graph->getNode("3"), 2) - 6.10/2.20) < 0.001); //floating point
 
     delete graph;
 }
@@ -481,48 +481,3 @@ TEST_CASE("test BFS path medium", "[weight=1][part=2]")
 
     delete graph;
 }
-
-TEST_CASE("test cheapest path large", "[weight=1][part=2]")
-{
-    // testing traversing the tree for the cheapest path (dataset hardBasic)
-    Graph *graph = new Graph("datasets/hardBasic.csv");
-    std::vector<Node*> path = graph->BFS(graph->getNodes()->at(0)); // first node is 3
-
-    std::string ss = "";
-    for (unsigned i = 0; i < path.size(); i++) {
-        ss += path.at(i)->getZone() + " ";
-    }
-    // The expected cheapest path... "3 8 56 32 43 7 24 96 95 90 92 91 94 93 99 98 97 86 87 85 89 88 "
-    //REQUIRE(ss == "3 8 56 93 32 98 96 91 90 32 99 98 96 86 91 89 92 99 85 89 87 92 85 ");
-
-    delete graph;
-}
-
-// // Dikstra's (???)
-// TEST_CASE("testShortestPathEmpty", "[weight=1][part=2]")
-// {
-//     // testing traversing the tree for at least one empty variable
-//     REQUIRE(true);
-// }
-// TEST_CASE("testShortestPath1 dataset1", "[weight=1][part=2]")
-// {
-//     // testing traversing the tree for the shortest path (dataset 1)
-//     REQUIRE(true);
-// }
-// TEST_CASE("testShortestPath2 dataset1", "[weight=1][part=2]")
-// {
-//     // testing traversing the tree for the shortest path (dataset 1)
-//     REQUIRE(true);
-// }
-// TEST_CASE("testShortestPath3 dataset2", "[weight=1][part=2]")
-// {
-//     // testing traversing the tree for the shortest path (dataset 2)
-//     REQUIRE(true);
-// }
-// TEST_CASE("testShortestPath4 dataset2", "[weight=1][part=2]")
-// {
-//     // testing traversing the tree for the shortest path (dataset 2)
-//     REQUIRE(true);
-// }
-
-// #endif
