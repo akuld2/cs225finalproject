@@ -17,12 +17,11 @@ When answering the questions above we will use the following algorithms:
 - Dijkstra's Algorithm.  We plan to use Dijkstra’s Algorithm to find the cheapest path, the quickest path, or the path with the least amount of miles between two different zones.
 - Betweeness Centrality Alogrithm. We plan to use the Betweenness Centrality Algorithm to find which zones are center points within Chicago.
 
-## Presentation
-[Presentation Video]()
+## [Presentation Video]()
 @todo put the presentation video here
 
 ## Data
-We are using the data from the [Chicago Data Portal of Transportation](https://data.cityofchicago.org/Transportation/Taxi-Trips/wrvz-psew/data).  We will be focusing on the following columns
+We are using the data from the [Chicago Data Portal of Transportation](https://data.cityofchicago.org/Transportation/Taxi-Trips/wrvz-psew/data).  We will be focusing on the following columns:
 - Pickup Community Area
 - Dropoff Community Area
 - Trip Seconds
@@ -36,28 +35,28 @@ We are using the data from the [Chicago Data Portal of Transportation](https://d
 - The Project Report, Development Logs, and other documents are in [/documents](https://github.com/akuld2/cs225finalproject/tree/main/documents)
 
 
-## Development Setup
-Make sure you are running the program in Docker.
+## Running Instructions
+Make sure you are running the program in Docker. If not, follow [this guide](https://courses.engr.illinois.edu/cs225/fa2022/resources/own-machine/) to get started.
 
-### Execultables
-To run the Chicago Taxi Trip Navigator, run `./run.sh` in the root directory.  The terminal will give you instructions on what to input.  Here is what to expect...
-1. Navigate Between Zones (Dijkstra's) 
-- - Input: a `start zone` (integer), `end zone` (integer), and a `metric` (integer).  The zone has to be a zone that the is listed.  The metric a user chooses determines if they are looking for the shortest path (miles), quickest path (seconds), or cheapest path (money)
-- - Output: a vector of zones that gives the directions a user needs to take on the path and a double that describes the total amount of the metric they chose. 
-2. Navigate to Connected Zones (BFS)
-- - Input: a `metric` (integer)
-- - Output: a vector of zones a user can travel when starting at that zone
-3. Find the Busiest Zone (Betweeness Centrality Algorithm)
-- - Input: none
-- - Output: a formatted string that tells the user which is the most center node for each metric
+### Execultable
+To run the Chicago Taxi Trip Navigator, run `./run.sh` in the root directory.  The terminal will give you instructions on what to input. Here is what to expect:
+1. Navigate Between Zones (Dijkstra's):
+  - Input: a `start zone` (integer), `end zone` (integer), and a `metric` (integer).  The zone has to be a zone that the is listed.  The metric a user chooses determines if they are looking for the shortest path (miles), quickest path (seconds), or cheapest path (money)
+  - Output: a vector of zones that gives the directions a user needs to take on the path and a double that describes the total amount of the metric they chose. 
+2. Navigate to Connected Zones (BFS):
+  - Input: a `metric` (integer)
+  - Output: a vector of zones a user can travel when starting at that zone
+3. Find the Busiest Zone (Betweeness Centrality Algorithm):
+  - Input: none
+  - Output: a formatted string that tells the user which is the most center node for each metric
 4. Quit 
 
 ### Tests
 To run the test cases for the Chicago Taxi Trip Navigator, run `./tests.sh` in the root directory.  We are using several different sized datasets that are located in [/datasets](https://github.com/akuld2/cs225finalproject/tree/main/datasets).  Our test cases focus on small to medium sized graphs when creating the graph, using BFS, using DIjkstra's, and using the Betweeness Centrality Algorithm.  To see a visual of the test datasets, they are located in the datasets folder in the file called [TestDatasetVisuals.pdf](https://github.com/akuld2/cs225finalproject/blob/megan-ja-patch-1/datasets/TestDatasetsVisuals.pdf).
 
-## Contributers
-Nisha Prasad (nishap4)
-Akul Datta (akuld2)
-Megan Ja (meganja2)
-Yesui Dovchinsuren (ydovc2)
+## Team
+- Nisha Prasad (`nishap4`)
+- Akul Datta (`akuld2`)
+- Megan Ja (`meganja2`)
+- Yesui Dovchinsuren (`ydovc2`)
 
