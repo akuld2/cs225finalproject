@@ -57,12 +57,9 @@ std::vector<std::pair<Node*, double>> Graph::findPathLengths(Node* start, int me
 double Graph::findShortestPath(Node* start, Node* end, int metric) {
     std::vector<std::pair<Node*, double>> distances = findPathLengths(start, metric);
 
-    std::vector<std::pair<Node*, double>> output = distances; // dont need this
-
     int index = get_idx_path(distances, end);
     return distances[index].second;
 }
-
 
 int Graph::get_idx_path(std::vector<std::pair<Node*, double>> distances, Node* destination) {
     std::vector<Node*> firsts;
@@ -81,7 +78,6 @@ std::vector<double> Graph::get_seconds_path(std::vector<std::pair<Node*, double>
     }
     return seconds;
 }
-// the get_first_path is not needed
 std::vector<Node*> Graph::get_firsts_path(std::vector<std::pair<Node*, double>> distances) {
     std::vector<Node*> firsts;
     for (unsigned int i = 0; i < distances.size(); i++) {

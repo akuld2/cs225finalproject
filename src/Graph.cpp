@@ -228,9 +228,5 @@ std::vector<Node*> Graph::BFS(Node* start) {
             }
         }
     }
-    // for (auto node : cheapestPath) {
-    //     std::cout << node->getZone() << ", ";
-    // }
-    // std::cout << std::endl;
     return order;
 }

@@ -279,76 +279,95 @@ TEST_CASE("Dijkstra medium complex test", "[weight=1][part=2]")
     REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("7"), 1) == 1344.0);
 
     // // miles (passes)
-    // REQUIRE(graph->findShortestPath(graph->getNode("3"), graph->getNode("3"), 2) == 0.0);
-    // // REQUIRE(graph->findShortestPath(graph->getNode("3"), graph->getNode("32"), 2) == 7.39);
-    // REQUIRE(std::abs(graph->findShortestPath(graph->getNode("3"), graph->getNode("32"), 2) - 7.39) < 0.001);
-    // REQUIRE(graph->findShortestPath(graph->getNode("3"), graph->getNode("56"), 2) == 3.89);
-    // REQUIRE(graph->findShortestPath(graph->getNode("3"), graph->getNode("8"), 2) == 6.89);
-    // REQUIRE(graph->findShortestPath(graph->getNode("3"), graph->getNode("24"), 2) == 9.12);
-    // REQUIRE(graph->findShortestPath(graph->getNode("3"), graph->getNode("43"), 2) == 6.89);
-    // REQUIRE(graph->findShortestPath(graph->getNode("3"), graph->getNode("7"), 2) == 8.39);
+    REQUIRE(graph->findShortestPath(graph->getNode("3"), graph->getNode("3"), 2) == 0.0);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("3"), graph->getNode("32"), 2) - 7.39) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("3"), graph->getNode("32"), 2) - 7.39) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("3"), graph->getNode("56"), 2) - 3.89) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("3"), graph->getNode("8"), 2) - 6.89) < 0.01);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("3"), graph->getNode("24"), 2) - 9.12) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("3"), graph->getNode("43"), 2) - 6.89) < 0.001);
+    //REQUIRE(std::abs(graph->findShortestPath(graph->getNode("3"), graph->getNode("7"), 2) - 8.39) < 0.001);
 
-    // REQUIRE(graph->findShortestPath(graph->getNode("32"), graph->getNode("3"), 2) == 7.04);
-    // REQUIRE(graph->findShortestPath(graph->getNode("32"), graph->getNode("32"), 2) == 0.0);
-    // REQUIRE(graph->findShortestPath(graph->getNode("32"), graph->getNode("56"), 2) == 3.25);
-    // REQUIRE(graph->findShortestPath(graph->getNode("32"), graph->getNode("8"), 2) == 2.25);
-    // REQUIRE(graph->findShortestPath(graph->getNode("32"), graph->getNode("24"), 2) == 4.48);
-    // REQUIRE(graph->findShortestPath(graph->getNode("32"), graph->getNode("43"), 2) == 0.3);
-    // REQUIRE(graph->findShortestPath(graph->getNode("32"), graph->getNode("7"), 2) == 0.45);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("32"), graph->getNode("3"), 2) - 7.04) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("32"), graph->getNode("32"), 2) - 0.0) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("32"), graph->getNode("56"), 2) - 3.25) < 0.001);
+    //REQUIRE(std::abs(graph->findShortestPath(graph->getNode("32"), graph->getNode("8"), 2) - 2.25) < 0.001);
+    //REQUIRE(std::abs(graph->findShortestPath(graph->getNode("32"), graph->getNode("24"), 2) - 4.48) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("32"), graph->getNode("43"), 2) - 0.3) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("32"), graph->getNode("7"), 2) - 0.45) < 0.001);
 
-    // REQUIRE(graph->findShortestPath(graph->getNode("56"), graph->getNode("3"), 2) == 3.79);
-    // REQUIRE(graph->findShortestPath(graph->getNode("56"), graph->getNode("32"), 2) == 3.5);
-    // REQUIRE(graph->findShortestPath(graph->getNode("56"), graph->getNode("56"), 2) == 0.0); 
-    // REQUIRE(graph->findShortestPath(graph->getNode("56"), graph->getNode("8"), 2) == 3.0);
-    // REQUIRE(graph->findShortestPath(graph->getNode("56"), graph->getNode("24"), 2) == 5.23);
-    // REQUIRE(graph->findShortestPath(graph->getNode("56"), graph->getNode("43"), 2) == 3.0); 
-    // REQUIRE(graph->findShortestPath(graph->getNode("56"), graph->getNode("7"), 2) == 3.15);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("56"), graph->getNode("3"), 2) - 3.79) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("56"), graph->getNode("32"), 2) - 3.5) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("56"), graph->getNode("56"), 2) - 0.0) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("56"), graph->getNode("8"), 2) - 3.0) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("56"), graph->getNode("24"), 2) - 5.23) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("56"), graph->getNode("43"), 2) - 3.0) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("56"), graph->getNode("7"), 2) - 3.15) < 0.001);
 
-    // REQUIRE(graph->findShortestPath(graph->getNode("8"), graph->getNode("3"), 2) == 7.89);
-    // REQUIRE(graph->findShortestPath(graph->getNode("8"), graph->getNode("32"), 2) == 6.9);
-    // REQUIRE(graph->findShortestPath(graph->getNode("8"), graph->getNode("56"), 2) == 4.0);
-    // REQUIRE(graph->findShortestPath(graph->getNode("8"), graph->getNode("8"), 2) == 0.0);
-    // REQUIRE(graph->findShortestPath(graph->getNode("8"), graph->getNode("24"), 2) == 2.23);
-    // REQUIRE(graph->findShortestPath(graph->getNode("8"), graph->getNode("43"), 2) == 2.15);
-    // REQUIRE(graph->findShortestPath(graph->getNode("8"), graph->getNode("7"), 2) == 1.5);
+    //REQUIRE(std::abs(graph->findShortestPath(graph->getNode("8"), graph->getNode("3"), 2) - 7.89) < 0.001);
+    //REQUIRE(std::abs(graph->findShortestPath(graph->getNode("8"), graph->getNode("32"), 2) - 6.9) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("8"), graph->getNode("56"), 2) - 4.0) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("8"), graph->getNode("8"), 2) - 0.0) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("8"), graph->getNode("24"), 2) - 2.23) < 0.001);
+    //REQUIRE(std::abs(graph->findShortestPath(graph->getNode("8"), graph->getNode("43"), 2) - 2.15) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("8"), graph->getNode("7"), 2) - 1.5) < 0.001);
 
-    // REQUIRE(graph->findShortestPath(graph->getNode("7"), graph->getNode("3"), 2) == 9.49);
-    // REQUIRE(graph->findShortestPath(graph->getNode("7"), graph->getNode("32"), 2) == 0.95);
-    // REQUIRE(graph->findShortestPath(graph->getNode("7"), graph->getNode("56"), 2) == 3.4);
-    // REQUIRE(graph->findShortestPath(graph->getNode("7"), graph->getNode("8"), 2) == 1.7);
-    // REQUIRE(graph->findShortestPath(graph->getNode("7"), graph->getNode("24"), 2) == 3.93);
-    // REQUIRE(graph->findShortestPath(graph->getNode("7"), graph->getNode("43"), 2) == 0.45);
-    // REQUIRE(graph->findShortestPath(graph->getNode("7"), graph->getNode("7"), 2) == 0.0);
+    //REQUIRE(std::abs(graph->findShortestPath(graph->getNode("7"), graph->getNode("3"), 2) - 9.49) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("7"), graph->getNode("32"), 2) - 0.95) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("7"), graph->getNode("56"), 2) - 3.4) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("7"), graph->getNode("8"), 2) - 1.7) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("7"), graph->getNode("24"), 2) - 3.93) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("7"), graph->getNode("43"), 2) - 0.45) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("7"), graph->getNode("7"), 2) - 0.0) < 0.001);
 
-    // REQUIRE(graph->findShortestPath(graph->getNode("43"), graph->getNode("3"), 2) == 6.74);
-    // REQUIRE(graph->findShortestPath(graph->getNode("43"), graph->getNode("32"), 2) == 0.5);
-    // REQUIRE(graph->findShortestPath(graph->getNode("43"), graph->getNode("56"), 2) == 2.95);
-    // REQUIRE(graph->findShortestPath(graph->getNode("43"), graph->getNode("8"), 2) == 1.95);
-    // REQUIRE(graph->findShortestPath(graph->getNode("43"), graph->getNode("24"), 2) == 4.18);
-    // REQUIRE(graph->findShortestPath(graph->getNode("43"), graph->getNode("43"), 2) == 0.0);
-    // REQUIRE(graph->findShortestPath(graph->getNode("43"), graph->getNode("7"), 2) == 0.15);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("43"), graph->getNode("3"), 2) - 6.74) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("43"), graph->getNode("32"), 2) - 0.5) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("43"), graph->getNode("56"), 2) - 2.95) < 0.001);
+    //REQUIRE(std::abs(graph->findShortestPath(graph->getNode("43"), graph->getNode("8"), 2) - 1.95) < 0.001);
+    //REQUIRE(std::abs(graph->findShortestPath(graph->getNode("43"), graph->getNode("24"), 2) - 4.18) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("43"), graph->getNode("43"), 2) - 0.0) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("43"), graph->getNode("7"), 2) - 0.15) < 0.001);
 
-    // REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("3"), 2) == 9.1);
-    // REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("32"), 2) == 4.78);
-    // REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("56"), 2) == 6.13);
-    // REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("8"), 2) == 2.13);
-    // REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("24"), 2) == 0.0);
-    // REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("43"), 2) == 4.28);
-    // REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("7"), 2) == 3.63);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("24"), graph->getNode("3"), 2) - 9.1) < 0.001);
+    //REQUIRE(std::abs(graph->findShortestPath(graph->getNode("24"), graph->getNode("32"), 2) - 4.78) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("24"), graph->getNode("56"), 2) - 6.13) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("24"), graph->getNode("8"), 2) - 2.13) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("24"), graph->getNode("24"), 2) - 0.0) < 0.001);
+    //REQUIRE(std::abs(graph->findShortestPath(graph->getNode("24"), graph->getNode("43"), 2) - 4.28) < 0.001);
+    REQUIRE(std::abs(graph->findShortestPath(graph->getNode("24"), graph->getNode("7"), 2) - 3.63) < 0.001);
 
     delete graph;
 }
 
-// TEST_CASE("Betweenness Multiple Edges test", "[weight=1][part=2]")
-// {
-//     Graph* graph = new Graph("datasets/multipleEdges.csv");
+TEST_CASE("Betweenness Multiple Edges test", "[weight=1][part=2]")
+{
+    Graph* graph = new Graph("datasets/multipleEdges.csv");
 
-//     REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("35"), 0) == 18.0);
-//     REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("35"), 1) == 15.0);
-//     REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("35"), 2) == 5.25);
+    REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("35"), 0) == 18.0);
+    REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("35"), 1) == 15.0);
+    REQUIRE(graph->findShortestPath(graph->getNode("24"), graph->getNode("35"), 2) == 5.25);
 
-//     delete graph;
-// }
+    delete graph;
+}
+
+TEST_CASE("Betweenness small basic test", "[weight=1][part=2]")
+{
+    Graph* graph = new Graph("datasets/smallBasic.csv");
+
+    REQUIRE(graph->betweennessRatio(graph->getNode("1"), 0) == 15.25/2.25);
+    REQUIRE(graph->betweennessRatio(graph->getNode("2"), 0) == 1.0);
+    REQUIRE(graph->betweennessRatio(graph->getNode("3"), 0) == 4.0);
+
+    REQUIRE(graph->betweennessRatio(graph->getNode("1"), 1) == 1567.0/789.0);
+    REQUIRE(graph->betweennessRatio(graph->getNode("2"), 1) == 1245.0/1111.0);
+    REQUIRE(graph->betweennessRatio(graph->getNode("3"), 1) == 1900.0/456.0);
+
+    REQUIRE(graph->betweennessRatio(graph->getNode("1"), 2) == 7.9/0.4);
+    REQUIRE(graph->betweennessRatio(graph->getNode("2"), 2) == 1.0);
+    REQUIRE(std::abs(graph->betweennessRatio(graph->getNode("3"), 2) - 6.10/2.20) < 0.001); //floating point
+
+    delete graph;
+}
 
 TEST_CASE("Test Build Graph with medium dataset", "[part=1]")
 {
@@ -431,7 +450,6 @@ TEST_CASE("test if bad data is inputted", "[weight=1][part=1]")
 }
 
 
-
 // Advanced test cases
 TEST_CASE("test BFS path small", "[weight=1][part=2]")
 {
@@ -463,33 +481,3 @@ TEST_CASE("test BFS path medium", "[weight=1][part=2]")
 
     delete graph;
 }
-
-
-// // Dikstra's (???)
-// TEST_CASE("testShortestPathEmpty", "[weight=1][part=2]")
-// {
-//     // testing traversing the tree for at least one empty variable
-//     REQUIRE(true);
-// }
-// TEST_CASE("testShortestPath1 dataset1", "[weight=1][part=2]")
-// {
-//     // testing traversing the tree for the shortest path (dataset 1)
-//     REQUIRE(true);
-// }
-// TEST_CASE("testShortestPath2 dataset1", "[weight=1][part=2]")
-// {
-//     // testing traversing the tree for the shortest path (dataset 1)
-//     REQUIRE(true);
-// }
-// TEST_CASE("testShortestPath3 dataset2", "[weight=1][part=2]")
-// {
-//     // testing traversing the tree for the shortest path (dataset 2)
-//     REQUIRE(true);
-// }
-// TEST_CASE("testShortestPath4 dataset2", "[weight=1][part=2]")
-// {
-//     // testing traversing the tree for the shortest path (dataset 2)
-//     REQUIRE(true);
-// }
-
-// #endif
