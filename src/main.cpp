@@ -8,6 +8,7 @@
 int main()
 {
     Graph* taxiGraph = new Graph("datasets/Taxi_Trips.csv");
+    taxiGraph->printGraph();
     std::vector<std::string> zones = taxiGraph->getNodeNames();
     bool quitSelected = false;
 
@@ -41,19 +42,25 @@ int main()
             if (std::find(zones.begin(), zones.end(), std::to_string(startingLocation)) != zones.end() && std::find(zones.begin(), zones.end(), std::to_string(endingLocation)) != zones.end()) {
                 std::cout << "Please select an option to minimize: " << std::endl;
                 std::cout << "1.) Fare" << std::endl;
-                std::cout << "2.) Miles" << std::endl;
-                std::cout << "3.) Time" << std::endl;
+                std::cout << "2.) Time" << std::endl;
+                std::cout << "3.) Miles" << std::endl;
                 int choice2;
                 std::cin >> choice2;
+                std::vector<Node*> path;
                 if (choice2 == 1) {
-                    // Call Dijkstra's Here
+                    // path =
                 } else if (choice2 == 2) {
-                    // Call Dijkstra's Here
+                    // path = 
                 } else if (choice2 == 3) {
-                    // Call Dijkstra's Here
+                    // path = 
                 } else {
                     std::cout << "Choice entered is invalid." << std::endl;
                 }
+                std::cout << "Navigation Order: ";
+                for (Node* node : path) {
+                    std::cout << node->getZone() << " "; 
+                }
+                std::cout << std::endl;
             } else { 
                 std::cout << "One or both of the zones entered are invalid." << std::endl;
             }
@@ -77,10 +84,9 @@ int main()
             }
         } else if (choice == 3) {
             std::cout << "You have selected to find the most busy zone." << std::endl;
-            std::cout << "The busiest zone is " << std::endl;
-            // @todo Call Betweenness Here
-            // @todo need to be descriptive on what is cout
-            // @todo need to call betweeness for each metric
+            std::cout << "The busiest zone is when minimizing fare is  " << taxiGraph->betweennessCentrality(0) << std::endl;
+            std::cout << "The busiest zone is when minimizing time is  " << taxiGraph->betweennessCentrality(1) << std::endl;
+            std::cout << "The busiest zone is when minimizing distance is  " << taxiGraph->betweennessCentrality(2) << std::endl;
         } else if (choice == 4) {
             std::cout << "Thank you for your patronage. Good day." << std::endl;
             quitSelected = true;
