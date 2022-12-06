@@ -48,10 +48,10 @@ int main()
                 std::cin >> choice2;
                 std::vector<Node*> path;
 
-                Node* start = new Node(std::to_string(startingLocation));
-                Node* end = new Node(std::to_string(endingLocation));
+                Node* start = taxiGraph->graphIterator(std::to_string(startingLocation));
+                Node* end = taxiGraph->graphIterator(std::to_string(endingLocation));
                 if (choice2 == 1 || choice2 == 2 || choice2 == 3) {
-                    path = taxiGraph->getShortestPath(start, end, choice2);
+                    path = taxiGraph->getShortestPath(start, end, choice2-1);
                 } else {
                     std::cout << "Choice entered is invalid." << std::endl;
                 }
