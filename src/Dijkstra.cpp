@@ -74,6 +74,8 @@ std::vector<Node*> Graph::getShortestPath(Node* start, Node* end, int metric) {
         path.push_back(curr);
         curr = curr->prev;
     }
+
+    path.push_back(start);
     std::reverse(path.begin(), path.end());
 
     return path;
