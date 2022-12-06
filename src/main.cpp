@@ -8,7 +8,7 @@
 int main()
 {
     Graph* taxiGraph = new Graph("datasets/Taxi_Trips.csv");
-    taxiGraph->printGraph();
+    // taxiGraph->printGraph();
     std::vector<std::string> zones = taxiGraph->getNodeNames();
     bool quitSelected = false;
 
@@ -47,12 +47,11 @@ int main()
                 int choice2;
                 std::cin >> choice2;
                 std::vector<Node*> path;
-                if (choice2 == 1) {
-                    // path =
-                } else if (choice2 == 2) {
-                    // path = 
-                } else if (choice2 == 3) {
-                    // path = 
+
+                Node* start = taxiGraph->graphIterator(std::to_string(startingLocation));
+                Node* end = taxiGraph->graphIterator(std::to_string(endingLocation));
+                if (choice2 == 1 || choice2 == 2 || choice2 == 3) {
+                    path = taxiGraph->getShortestPath(start, end, choice2-1);
                 } else {
                     std::cout << "Choice entered is invalid." << std::endl;
                 }

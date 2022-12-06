@@ -14,6 +14,9 @@ std::vector<std::pair<Node*, double>> Graph::findPathLengths(Node* start, int me
 
     std::queue<Node*> queue;
     queue.push(start);
+
+    start->prev = nullptr;
+
     while (!queue.empty()) {
         Node* front = queue.front();
         queue.pop();
@@ -46,6 +49,7 @@ std::vector<std::pair<Node*, double>> Graph::findPathLengths(Node* start, int me
             index = get_idx_path(distances, destination);
 
             if (new_dist < get_seconds_path(distances)[index]) {
+                destination->prev = front;
                 distances[index].second = new_dist;
                 queue.push(destination);
             }
@@ -59,6 +63,22 @@ double Graph::findShortestPath(Node* start, Node* end, int metric) {
 
     int index = get_idx_path(distances, end);
     return distances[index].second;
+}
+
+std::vector<Node*> Graph::getShortestPath(Node* start, Node* end, int metric) {
+    std::vector<std::pair<Node*, double>> distances = findPathLengths(start, metric);
+    Node* curr = end;
+    std::vector<Node*> path;
+
+    while (curr != start) {
+        path.push_back(curr);
+        curr = curr->prev;
+    }
+
+    path.push_back(start);
+    std::reverse(path.begin(), path.end());
+
+    return path;
 }
 
 int Graph::get_idx_path(std::vector<std::pair<Node*, double>> distances, Node* destination) {

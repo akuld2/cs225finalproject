@@ -56,6 +56,8 @@ class Node
      */
     std::vector<double> retrieveNeighborEdgeData(std::string endLocation);
 
+    Node* prev;
+
     
 
 private:
