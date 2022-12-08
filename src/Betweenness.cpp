@@ -1,13 +1,16 @@
 #include "Graph.h"
 
 int Graph::findScoreByNode(Node* start, Node* node, Node* end, int metric) {
-    std::vector<std::pair<Node*, double>> distances_part1 = findPathLengths(start, metric);
-    int index_part1 = get_idx_path(distances_part1, node);
-    double input1 = distances_part1[index_part1].second;
+    // std::vector<std::pair<Node*, double>> distances_part1 = findPathLengths(start, metric);
+    // int index_part1 = get_idx_path(distances_part1, node);
+    // double input1 = distances_part1[index_part1].second;
 
-    std::vector<std::pair<Node*, double>> distances_part2 = findPathLengths(node, metric);
-    int index_part2 = get_idx_path(distances_part2, end);
-    double input2 = distances_part2[index_part2].second;
+    // std::vector<std::pair<Node*, double>> distances_part2 = findPathLengths(node, metric);
+    // int index_part2 = get_idx_path(distances_part2, end);
+    // double input2 = distances_part2[index_part2].second;
+
+    double input1 = findShortestPath(start, node, metric);
+    double input2 = findShortestPath(node, end, metric);   
 
     double total = input1 + input2;
     int out = 0;
@@ -23,22 +26,22 @@ int Graph::findScoreByNode(Node* start, Node* node, Node* end, int metric) {
 void Graph::allPairs(std::vector<Node*> n) {
     std::cout << "AllPairs()" << std::endl;
     for (unsigned int i = 0; i < n.size(); i++) {
-        for (unsigned int j = 0; j < n.size(); j++) {
+        for (unsigned int j = i; j < n.size(); j++) {
             if (i != j) {
                 node_pairs.push_back(std::make_pair(n[i], n[j]));
             }
         }
     }
-    for(auto& p : node_pairs){
-        if (std::stoi(p.first->getZone()) < std::stoi(p.second->getZone())) {
-            Node* tmp = p.first;
-            p.first = p.second;
-            p.second = tmp;
-        }
-    }
+    // for(auto& p : node_pairs){
+    //     if (std::stoi(p.first->getZone()) < std::stoi(p.second->getZone())) {
+    //         Node* tmp = p.first;
+    //         p.first = p.second;
+    //         p.second = tmp;
+    //     }
+    // }
     std::cout << "AllPairs() OUTSIDE" << std::endl;
-    std::sort(node_pairs.begin(), node_pairs.end());
-    node_pairs.erase(std::unique(node_pairs.begin(), node_pairs.end()), node_pairs.end());
+    // std::sort(node_pairs.begin(), node_pairs.end());
+    // node_pairs.erase(std::unique(node_pairs.begin(), node_pairs.end()), node_pairs.end());
 }
 
 void Graph::populateRelations(Node* node) {
