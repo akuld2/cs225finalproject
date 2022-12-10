@@ -17,8 +17,7 @@ When answering the questions above we will use the following algorithms:
 - Dijkstra's Algorithm.  We plan to use Dijkstra’s Algorithm to find the cheapest path, the quickest path, or the path with the least amount of miles between two different zones.
 - Betweeness Centrality Alogrithm. We plan to use the Betweenness Centrality Algorithm to find which zones are center points within Chicago.
 
-## Presentation
-[Presentation Video](https://drive.google.com/file/d/1gnWoVbIn6YT2lCHMhpnKyHUe9TvL5xcV/view?usp=sharing)
+## [Presentation Video](https://drive.google.com/file/d/1gnWoVbIn6YT2lCHMhpnKyHUe9TvL5xcV/view?usp=sharing)
 
 ## Data
 We are using the data from the [Chicago Data Portal of Transportation](https://data.cityofchicago.org/Transportation/Taxi-Trips/wrvz-psew/data).  We will be focusing on the following columns
@@ -35,7 +34,7 @@ We are using the data from the [Chicago Data Portal of Transportation](https://d
 - The Project Report, Development Logs, and other documents are in [/documents](https://github.com/akuld2/cs225finalproject/tree/main/documents)
 
 
-## Development Setup
+## Running Intructions
 Make sure you are running the program in Docker.
 
 ### Executables
@@ -55,8 +54,7 @@ To run the Chicago Taxi Trip Navigator, run `./run.sh` in the root directory.  T
 To run the test cases for the Chicago Taxi Trip Navigator, run `./tests.sh` in the root directory.  We are using several different sized datasets that are located in [/datasets](https://github.com/akuld2/cs225finalproject/tree/main/datasets).  Our test cases focus on small to medium sized graphs when creating the graph, using BFS, using DIjkstra's, and using the Betweeness Centrality Algorithm.  To see a visual of the test datasets, they are located in the datasets folder in the file called [TestDatasetVisuals.pdf](https://github.com/akuld2/cs225finalproject/blob/megan-ja-patch-1/datasets/TestDatasetsVisuals.pdf).
 
 ## Contributers
-Nisha Prasad (nishap4)
-Akul Datta (akuld2)
-Megan Ja (meganja2)
-Yesui Dovchinsuren (ydovc2)
-
+- Akul Datta (`akuld2`)
+- Yesui Dovchinsuren (`ydovc2`)
+- Nisha Prasad (`nishap4`)
+- Megan Ja (`meganja2`)
