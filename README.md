@@ -18,8 +18,7 @@ When answering the questions above we will use the following algorithms:
 - Betweeness Centrality Alogrithm. We plan to use the Betweenness Centrality Algorithm to find which zones are center points within Chicago.
 
 ## Presentation
-[Presentation Video]()
-@todo put the presentation video here
+[Presentation Video](https://drive.google.com/file/d/1gnWoVbIn6YT2lCHMhpnKyHUe9TvL5xcV/view?usp=sharing)
 
 ## Data
 We are using the data from the [Chicago Data Portal of Transportation](https://data.cityofchicago.org/Transportation/Taxi-Trips/wrvz-psew/data).  We will be focusing on the following columns
