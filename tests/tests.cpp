@@ -354,27 +354,38 @@ TEST_CASE("Betweenness small basic test", "[weight=1][part=2]")
 {
     Graph* graph = new Graph("datasets/smallBasic.csv");
 
-    REQUIRE(graph->betweennessRatio(graph->getNode("1"), 0) == 15.25/2.25);
+    REQUIRE(graph->betweennessRatio(graph->getNode("1"), 0) == 0.0);
+    REQUIRE(graph->betweennessRatio(graph->getNode("1"), 1) == 0.0);
+    REQUIRE(graph->betweennessRatio(graph->getNode("1"), 2) == 0.0);
+
     REQUIRE(graph->betweennessRatio(graph->getNode("2"), 0) == 1.0);
-    REQUIRE(graph->betweennessRatio(graph->getNode("3"), 0) == 4.0);
-
-    REQUIRE(graph->betweennessRatio(graph->getNode("1"), 1) == 1567.0/789.0);
-    REQUIRE(graph->betweennessRatio(graph->getNode("2"), 1) == 1245.0/1111.0);
-    REQUIRE(graph->betweennessRatio(graph->getNode("3"), 1) == 1900.0/456.0);
-
-    REQUIRE(graph->betweennessRatio(graph->getNode("1"), 2) == 7.9/0.4);
+    REQUIRE(graph->betweennessRatio(graph->getNode("2"), 1) == 0.0);
     REQUIRE(graph->betweennessRatio(graph->getNode("2"), 2) == 1.0);
-    REQUIRE(std::abs(graph->betweennessRatio(graph->getNode("3"), 2) - 6.10/2.20) < 0.001); //floating point
 
+    REQUIRE(graph->betweennessRatio(graph->getNode("3"), 0) == 0.0);
+    REQUIRE(graph->betweennessRatio(graph->getNode("3"), 1) == 0.0);
+    REQUIRE(graph->betweennessRatio(graph->getNode("3"), 2) == 0.0);
     delete graph;
 }
+
 TEST_CASE("BetweennessCentrality small basic test", "[weight=1][part=2]")
 {
     Graph* graph = new Graph("datasets/smallBasic.csv");
 
-    REQUIRE(graph->betweennessCentrality(0) == "1"); // 15.25/2.25
-    REQUIRE(graph->betweennessCentrality(1) == "3"); // 1900.0/456.0
-    REQUIRE(graph->betweennessCentrality(2) == "1"); // 7.9/0.4
+    REQUIRE(graph->betweennessCentrality(0) == "2"); // 15.25/2.25
+    REQUIRE(graph->betweennessCentrality(1) == "1"); // 1900.0/456.0
+    REQUIRE(graph->betweennessCentrality(2) == "2"); // 7.9/0.4
+
+    delete graph;
+}
+
+TEST_CASE("BetweennessCentrality medium basic test", "[weight=1][part=2]")
+{
+    Graph* graph = new Graph("datasets/mediumBasic.csv");
+
+    REQUIRE(graph->betweennessCentrality(0) == "56");
+    REQUIRE(graph->betweennessCentrality(1) == "8");
+    REQUIRE(graph->betweennessCentrality(2) == "8");
 
     delete graph;
 }

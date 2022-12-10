@@ -95,8 +95,7 @@ public:
   std::vector<Node *> BFS(Node *start);
 
   /**
-   * @brief Gets the index of the node from the distances vector
-   *
+   * get_idx_path() gets the index of the node from the distances vector
    * @param distances vector of pairs
    * @param destination node that we would want the index from
    * @return index (int)
@@ -104,8 +103,7 @@ public:
   int get_idx_path(std::vector<std::pair<Node *, double>> distances, Node *destination);
 
   /**
-   * @brief Extracts an std::vector<double> from the std::vector<std::pair<Node*, double>
-   *
+   * get_seconds_path() extracts an std::vector<double> from the std::vector<std::pair<Node*, double>
    * @param distances vector of pairs
    * @return all second values in an std::vector<double>
    */
@@ -138,6 +136,14 @@ public:
 
   /**
    * Dijkstra method
+   * getShortestPath() returns a std::vector<Node*> that is the path of nodes from the start node to the end
+   * @param distances
+   * @return std::vector<Node*> that is the path of nodes from the start node to the end
+   */
+  std::vector<Node*> getShortestPath(Node *start, Node *end, int metric);
+
+  /**
+   * Dijkstra method
    * findShortestPath() uses findPathLengths() and finds the length between 2 points given a certain metric.
    * @param start the start node
    * @param end the end node
@@ -150,17 +156,18 @@ public:
 
   /**
    * Betweenness Centrality method
-   * findShortestPathPassByNode() uses findShortestPath() and finds the number of
-   * shortest paths between the nodes start and end that pass-through the node given a certain metric
+   * findScoreByNode() uses findShortestPath() and determines the score of the relationships 
+   * that pass by node given a certain metric
    * @param start the start node
    * @param node the node that is to be centered between start and end nodes for betweenness
    * @param end the end node
    * @param metric Metric is 0 for fare (cost), 1 for time, and 2 for miles (length)
-   * @return double the length from the start node to end node that passes through the node
+   * @return int the score of the two nodes' relationship
    */
-  double findShortestPathPassByNode(Node *start, Node *node, Node *end, int metric);
+  int findScoreByNode(Node *start, Node *node, Node *end, int metric);
 
   /**
+   * Betweenness Centrality method
    * allPairs() finds all combinations or all pairs of nodes in the graph excluding the Node node
    * sets the private variable called node_pairs
    * @param std::vector<int> n total number of nodes in the graph
@@ -168,6 +175,18 @@ public:
   void allPairs(std::vector<Node *> n);
 
   /**
+   * Betweenness Centrality method
+   * switchingABforMin() uses findShortestPath() and findShortestPathPassByNode()
+   * and compares their values for the min and returns a pair with an adjucted starting and ending nodes
+   * @param a Node a
+   * @param b Node b
+   * @param metric Metric is 0 for fare (cost), 1 for time, and 2 for miles (length)
+   * @return std::pair<Node*, Node*> 
+   */
+  std::pair<Node*, Node*> switchingABforMin(Node *a, Node *b, int metric);
+
+  /**
+   * Betweenness Centrality method
    * populateRelations() uses node_pairs to populate
    * relationships_between_nodes and relationships_between_nodes_passbynode
    * @param node that is to be centered between start and end nodes for betweenness
@@ -175,6 +194,7 @@ public:
   void populateRelations(Node *node);
 
   /**
+   * Betweenness Centrality method
    * betweennessRatio() uses relationships to calculate each individual ratio
    * and returns their sum
    * @param node that is to be centered between start and end nodes for betweenness
@@ -185,6 +205,7 @@ public:
   double betweennessRatio(Node *node, int metric);
 
   /**
+   * Betweenness Centrality method
    * betweennessCentrality() uses the passed in metric to determine the busiest route or the central hub
    * given fare, time or mile
    * @param int metric an integer specifying the data value that we want to create the minimum
@@ -192,13 +213,6 @@ public:
    * @return std::string Node that is the busiest route given the metric
    */
   std::string betweennessCentrality(int metric);
-
-  /**
-   * returns a std::vector<Node*> that is the path of nodes from the start node to the end
-   * @param distances
-   * @return std::vector<Node*> that is the path of nodes from the start node to the end
-   */
-  std::vector<Node*> getShortestPath(Node *start, Node *end, int metric);
 
 private:
   /**
